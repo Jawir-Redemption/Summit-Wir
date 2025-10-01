@@ -12,7 +12,7 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(10)->withQueryString();
+        $products = Product::with('category')->latest()->paginate(10)->withQueryString();
         return view('admin.products.index', compact('products'));
     }
 
@@ -61,7 +61,7 @@ class AdminProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -72,7 +72,6 @@ class AdminProductController extends Controller
             'condition' => 'nullable|string|max:100',
         ]);
 
-        $product = Product::findOrFail($id);
         $product->update($validated);
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }
@@ -80,9 +79,8 @@ class AdminProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
