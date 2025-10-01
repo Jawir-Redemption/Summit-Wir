@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('no_hp')->nullable();
             $table->string('link_ktp')->nullable();
-            $table->string('role')->nullable();
+            $table->string('role')->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

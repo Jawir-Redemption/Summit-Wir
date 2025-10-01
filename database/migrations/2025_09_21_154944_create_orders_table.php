@@ -20,7 +20,9 @@ return new class extends Migration
             $table->integer('duration');
             $table->decimal('total_price', 15, 2);
             $table->decimal('total_fine', 15, 2)->nullable();
+            $table->decimal('additional_fine', 15, 2)->nullable();
             $table->string('status')->nullable();
+            $table->string('note')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('orderDetail_id')->references('id')->on('order_details')->onDelete('set null');
             $table->timestamps();
