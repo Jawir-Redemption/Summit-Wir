@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminProductController;
-use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\admin\AdminProductController;
+use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\CategoryController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
