@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\DashboardController;
@@ -23,4 +24,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
      * Order Management
      */
     Route::resource('orders', OrderController::class)->except(['destroy']);
+
+    /**
+     * User Management
+     */
+    Route::resource('users', UserController::class)->except(['create', 'store']);
 });
