@@ -53,9 +53,14 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'required|string|min:8|confirmed',
             'no_hp' => 'nullable|string|max:15',
-            'link_ktp' => 'nullable|url|max:255',
+            'ktp_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'role' => 'required|in:admin,user',
         ]);
+        
+        if ($request->hasFile('ktp_image')) {
+            $path = $request->file('ktp_image')->store('ktp_images', 'public');
+            $validated['ktp_image'] = $path;
+        }
 
         $user->update($validated);
     }

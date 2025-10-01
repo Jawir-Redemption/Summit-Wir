@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'no_hp',
-        'link_ktp',
+        'ktp_image',
         'role',
     ];
 
