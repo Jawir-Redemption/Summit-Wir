@@ -1,20 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\AdminProductController;
-use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\DashboardController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
 
     /**
      * Product Management
      */
-    Route::resource('products', AdminProductController::class);
+    Route::resource('products', ProductController::class);
 
     /**
      * Category Management
      */
     Route::resource('categories', CategoryController::class)->except(['show']);
+
+    /**
+     * Order Management
+     */
+    Route::resource('orders', OrderController::class)->except(['destroy']);
 });

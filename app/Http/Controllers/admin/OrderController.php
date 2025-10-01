@@ -6,14 +6,14 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminOrderController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        if ($request->search) {
+        if ($request->has('search') && $request->search != '') {
             $orders = Order::with('user')
                 ->when($request->search, function ($query, $search) {
                     $query->where('id', 'like', "%{$search}%")
@@ -56,7 +56,9 @@ class AdminOrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $validated = $request->validate([
-            'status' => 'required|string|max:50',
+            'status' => 'nullable|string|max:50',
+            'note' => 'nullable|string|max:255',
+            'additional_fine' => 'nullable|numeric|min:0',
         ]);
 
         $order->update($validated);
