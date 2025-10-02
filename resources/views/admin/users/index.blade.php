@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management</title>
-</head>
-<body>
-    @foreach ($users as $user)
-        <div>
-            <h2>{{ $user->name }}</h2>
-            <p>Email: {{ $user->email }}</p>
-            <p>Role: {{ $user->role }}</p>
-            @if ($user->ktp_image)
-                <img src="{{ asset('storage/' . $user->ktp_image) }}" alt="KTP Image" style="max-width:200px;">
-            @else
-                <p>No KTP image available.</p>
-            @endif
+@extends('layouts.app')
+@section('title', "Summit Wir")
+@section('content')
+    <section class="section">
+        <div class="section-header">
+            <h1>Blank Page</h1>
         </div>
-    @endforeach
-</body>
-</html>
+
+        <div class="section-body">
+        </div>
+    </section>
+@endsection

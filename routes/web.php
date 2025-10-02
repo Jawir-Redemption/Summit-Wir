@@ -35,6 +35,7 @@ Route::get('/register', function () {
 | Semua route dengan prefix "admin" hanya untuk bagian admin.
 |
 */
+
 Route::prefix('admin')->name('admin.')->group(function () {
 
     // Dashboard
