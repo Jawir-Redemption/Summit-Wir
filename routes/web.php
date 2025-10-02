@@ -7,6 +7,10 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CategoryController;
 
+Route::get('/', function (){
+    return view('customers.index');
+});
+
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 

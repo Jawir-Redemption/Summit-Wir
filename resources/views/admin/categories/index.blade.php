@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
-</head>
-<body>
-    @foreach ($categories as $category)
-        <h1>{{ $category->category }}</h1>
-    @endforeach
-</body>
-</html>
+@extends('layouts.app')
+@section('title', "Summit Wir")
+@section('content')
+    <section class="section">
+        <div class="section-header">
+            <h1>Blank Page</h1>
+        </div>
+
+        <div class="section-body">
+        </div>
+    </section>
+@endsection
