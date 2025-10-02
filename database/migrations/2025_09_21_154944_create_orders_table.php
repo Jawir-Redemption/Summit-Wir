@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('orderDetail_id')->nullable();
             $table->date('loan_date');
             $table->date('return_date');
             $table->integer('duration');
@@ -24,7 +23,6 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('note')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('orderDetail_id')->references('id')->on('order_details')->onDelete('set null');
             $table->timestamps();
         });
     }
