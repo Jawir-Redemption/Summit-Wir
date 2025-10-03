@@ -2,41 +2,49 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
-use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Authentication Routes
 |--------------------------------------------------------------------------
 |
-| Di sini kita daftarkan semua route untuk aplikasi web.
-| Route default diarahkan ke halaman login.
+| All routes for authentication.
 |
 */
+    // Login Route
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
+    
+    // Logout Route
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Default route -> ke login.blade.php
-Route::get('/', function () {
-    return view('login'); // resources/views/login.blade.php
-})->name('login');
+    // Register Route
+    Route::get('/register', [RegisterController::class, 'register'])->name('register');
+    Route::post('/register', [RegisterController::class, 'handleRegister'])->name('register.post');
+    Route::get('/email/verify', [RegisterController::class, 'verification'])->middleware('auth')->name('verification.notice');
 
-// Route register -> ke register.blade.php
-Route::get('/register', function () {
-    return view('register'); // resources/views/register.blade.php
-})->name('register');
+    // Email Verification Route
+    Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+    Route::post('/email/verification-notification', [RegisterController::class, 'resendVerification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes
+| Admin Panel Routes
 |--------------------------------------------------------------------------
 |
-| Semua route dengan prefix "admin" hanya untuk bagian admin.
+| All routes for admin panel.
 |
 */
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
 
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('index');
