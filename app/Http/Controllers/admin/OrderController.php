@@ -16,10 +16,9 @@ class OrderController extends Controller
         if ($request->has('search') && $request->search != '') {
             $orders = Order::with('user')
                 ->when($request->search, function ($query, $search) {
-                    $query->where('id', 'like', "%{$search}%")
-                        ->orWhereHas('user', function ($q) use ($search) {
-                            $q->where('name', 'like', "%{$search}%");
-                        });
+                    $query->where('id', 'like', "%{$search}%")->orWhereHas('user', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%");
+                    });
                 })
                 ->latest()
                 ->paginate(10)
@@ -27,7 +26,6 @@ class OrderController extends Controller
         } else {
             $orders = Order::with('user')->latest()->paginate(10)->withQueryString();
         }
-
 
         return view('admin.orders.index', compact('orders'));
     }
@@ -38,7 +36,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $order->load(['user', 'orderDetails']);
-        
+
         return view('admin.orders.show', compact('order'));
     }
 

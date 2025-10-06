@@ -38,7 +38,6 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
     }
 
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -68,5 +67,4 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
     }
-
 }

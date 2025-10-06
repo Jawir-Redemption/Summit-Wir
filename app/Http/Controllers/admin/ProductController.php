@@ -37,7 +37,7 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'category_id' => 'nullable|exists:categories,id',
             'condition' => 'nullable|string|max:100',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096'
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
 
         if ($request->hasFile('image')) {
@@ -78,14 +78,14 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'category_id' => 'nullable|exists:categories,id',
             'condition' => 'nullable|string|max:100',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096'
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('products', 'public');
             $validated['image'] = $path;
         }
-        
+
         $product->update($validated);
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }

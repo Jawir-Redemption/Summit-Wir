@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view('auth.login');
     }
-
 
     public function authenticate(Request $request)
     {
@@ -26,12 +26,15 @@ class LoginController extends Controller
             return redirect()->intended();
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return back()
+            ->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])
+            ->onlyInput('email');
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

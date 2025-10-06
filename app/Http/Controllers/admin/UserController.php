@@ -26,7 +26,6 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -56,7 +55,7 @@ class UserController extends Controller
             'ktp_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'role' => 'required|in:admin,customer',
         ]);
-        
+
         if ($request->hasFile('ktp_image')) {
             $path = $request->file('ktp_image')->store('ktp_images', 'public');
             $validated['ktp_image'] = $path;

@@ -6,6 +6,6 @@
     <title>Create Category</title>
 </head>
 <body>
-    <h1>Create Category</h1>
+            <h1>Create Category</h1>
 </body>
 </html>

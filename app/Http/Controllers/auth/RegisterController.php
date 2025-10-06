@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
-
 class RegisterController extends Controller
 {
-    public function register(){
+    public function register()
+    {
         return view('auth.register');
     }
 
@@ -24,13 +24,13 @@ class RegisterController extends Controller
             'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed'],
         ]);
- 
+
         $user = User::create([
             'name' => $credentials['name'],
             'email' => $credentials['email'],
             'password' => Hash::make($credentials['password']),
         ]);
- 
+
         event(new Registered($user));
 
         Auth::login($user);
@@ -43,16 +43,17 @@ class RegisterController extends Controller
         return view('auth.verify-email');
     }
 
-    public function verify(EmailVerificationRequest $request) 
+    public function verify(EmailVerificationRequest $request)
     {
         $request->fulfill();
 
         return redirect()->route('home');
     }
 
-    public function resendVerification(Request $request) {
+    public function resendVerification(Request $request)
+    {
         $request->user()->sendEmailVerificationNotification();
- 
+
         return back()->with('message', 'Verification link sent!');
     }
 }
