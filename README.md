@@ -1,3 +1,7 @@
+## 🚀 WireFrame
+
+<img width="1546" height="1024" alt="SummitWirr Login" src="https://github.com/user-attachments/assets/3968dfba-0c8b-469e-9288-013d86ad7b27" />
+<img width="4320" height="11100" alt="SummitWirr Dashboard" src="https://github.com/user-attachments/assets/d28df443-cad4-4720-b6a3-142264d90a59" />
 
 # SUMMIT WIR
 
