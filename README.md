@@ -73,7 +73,7 @@ This project is a **Laravel-based web application** designed to simplify the pro
 4.  **Run migrations**
     
     ```bash
-    php artisan migrate --seed
+    php artisan migrate
     
     ```
     
