@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class DashboardController extends Controller
     public function index()
     {
         $totalOrders = Order::count();
-        $totalUsers = Order::count();
+        $totalUsers = User::where('role', 'user')->count();
         $totalProducts = Product::count();
         $successOrders = Order::where('status', 'success')->count();
         $pendingOrders = Order::where('status', 'pending')->count();

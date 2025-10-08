@@ -53,7 +53,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'no_hp' => 'nullable|string|max:15',
             'ktp_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'role' => 'required|in:admin,customer',
+            'role' => 'required|in:admin,user',
         ]);
 
         if ($request->hasFile('ktp_image')) {
