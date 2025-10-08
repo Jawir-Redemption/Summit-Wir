@@ -1,108 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>@yield('title')</title>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@yield('title')</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/tailwind.output.css" />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="/assets/js/init-alpine.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+      defer
+    ></script>
+    <script src="/assets/js/charts-lines.js" defer></script>
+    <script src="/assets/js/charts-pie.js" defer></script>
+  </head>
+  <body>
+    <div
+      class="flex h-screen bg-gray-50 dark:bg-gray-900"
+      :class="{ 'overflow-hidden': isSideMenuOpen }"
+    >
+      <!-- Desktop sidebar -->
+      @include('components.desktop-sidebar')
+      <!-- Mobile sidebar -->
+      @include('components.mobile-sidebar')
 
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/modules/fontawesome/css/all.min.css">
-
-  <!-- CSS Libraries -->
-
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/components.css">
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-94034622-3');
-</script>
-<!-- /END GA --></head>
-
-<body>
-  <div id="app">
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Blank Page &mdash; Stisla</title>
-
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/modules/fontawesome/css/all.min.css">
-
-  <!-- CSS Libraries -->
-
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/components.css">
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-94034622-3');
-</script>
-<!-- /END GA --></head>
-
-<body>
-  <div id="app">
-    <div class="main-wrapper main-wrapper-1">
-      <div class="navbar-bg"></div>
-      <x-navbar />
-      <x-sidebar />
-
-      <!-- Main Content -->
-      <div class="main-content">
-        @yield('content')
+      <div class="flex flex-col flex-1 w-full">
+        @include('components.header')
+        <main class="h-full overflow-y-auto">
+          @yield('content')
+        </main>
       </div>
     </div>
-  </div>
-
-  <!-- General JS Scripts -->
-  <script src="/assets/modules/jquery.min.js"></script>
-  <script src="/assets/modules/popper.js"></script>
-  <script src="/assets/modules/tooltip.js"></script>
-  <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-  <script src="/assets/modules/moment.min.js"></script>
-  <script src="/assets/js/stisla.js"></script>
-  
-  <!-- JS Libraies -->
-
-  <!-- Page Specific JS File -->
-  
-  <!-- Template JS File -->
-  <script src="/assets/js/scripts.js"></script>
-  <script src="/assets/js/custom.js"></script>
-</body>
-</html>
-  </div>
-
-  <!-- General JS Scripts -->
-  <script src="/assets/modules/jquery.min.js"></script>
-  <script src="/assets/modules/popper.js"></script>
-  <script src="/assets/modules/tooltip.js"></script>
-  <script src="/assets/modules/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-  <script src="/assets/modules/moment.min.js"></script>
-  <script src="/assets/js/stisla.js"></script>
-  
-  <!-- JS Libraies -->
-
-  <!-- Page Specific JS File -->
-  
-  <!-- Template JS File -->
-  <script src="/assets/js/scripts.js"></script>
-  <script src="/assets/js/custom.js"></script>
-</body>
+  </body>
 </html>
