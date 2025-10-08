@@ -37,7 +37,8 @@
             <div class="p-10 sm:p-16 flex flex-col justify-center bg-white">
                 <h2 class="text-3xl font-extrabold text-gray-800 mb-8">Sign in to your account</h2>
 
-                <form class="space-y-6">
+                <form class="space-y-6" method="POST" action="{{ route('login.post') }}" >
+                    @csrf
                     <!-- Email -->
                     <div class="relative">
                         <input type="email" id="email" name="email" required
