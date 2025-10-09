@@ -15,7 +15,7 @@ This project is a **Laravel-based web application** designed to simplify the pro
 ### 🧭 Admin
 - Manage **products**, **categories**, and **customers**
 - Monitor **rental transactions** and **late fees**
-- Access an intuitive **admin dashboard** built with [Stisla Admin Template](https://github.com/stisla/stisla)
+- Access an intuitive **admin dashboard**
 
 ---
 
@@ -69,17 +69,17 @@ This project is a **Laravel-based web application** designed to simplify the pro
         MAIL_FROM_NAME="${APP_NAME}"
         
         
-4.  **Run migrations**
+4.  **Run migrations and Seeders**
     
     ```bash
-    php artisan migrate
+    php artisan migrate --seed
     
     ```
     
 5.  **Run the application**
     
     ```bash
-    php artisan serve
+    npm start
     
     ```
     
