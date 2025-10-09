@@ -15,10 +15,10 @@ class DashboardController extends Controller
         $totalOrders = Order::count();
         $totalUsers = User::where('role', 'user')->count();
         $totalProducts = Product::count();
-        $successOrders = Order::where('status', 'success')->count();
+        $successOrders = Order::where('status', 'completed')->count();
         $pendingOrders = Order::where('status', 'pending')->count();
-        $failedOrders = Order::where('status', 'failed')->count();
-        $revenue = Order::whereIn('status', ['success', 'paid'])->sum('total_price');
+        $failedOrders = Order::where('status', 'cancelled')->count();
+        $revenue = Order::whereIn('status', ['completed'])->sum('total_price');
         $latestOrders = Order::with(['orderDetails', 'user'])
             ->latest()
             ->take(10)

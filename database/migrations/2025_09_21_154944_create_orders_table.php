@@ -16,9 +16,9 @@ return new class extends Migration {
             $table->dateTime('loan_date');
             $table->dateTime('return_date');
             $table->integer('duration');
-            $table->decimal('total_price', 15, 2);
-            $table->decimal('total_fine', 15, 2)->nullable();
-            $table->decimal('additional_fine', 15, 2)->nullable();
+            $table->bigInteger('total_price')->unsigned();
+            $table->bigInteger('total_fine')->unsigned()->nullable();
+            $table->bigInteger('additional_fine')->unsigned()->nullable();
             $table->string('status')->nullable();
             $table->string('note')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->decimal('price', 15, 2);
+            $table->bigInteger('price')->unsigned();
             $table->integer('stock');
             $table->string('condition')->nullable();
             $table->string('image')->nullable();

@@ -40,7 +40,7 @@
                         Revenue
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        {{ $revenue }}
+                        Rp {{ number_format($revenue, 0, ',', '.') }}
                     </p>
                 </div>
             </div>
