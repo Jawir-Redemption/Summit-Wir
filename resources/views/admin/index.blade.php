@@ -131,66 +131,38 @@
                     <thead>
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                            <th class="px-4 py-3">Name</th>
-                            <th class="px-4 py-3">Items Ordered</th>
-                            <th class="px-4 py-3">Status</th>
-                            <th class="px-4 py-3">Action</th>
+                            <th class="px-4 py-3">No</th>
+                            <th class="px-4 py-3">Nama Customer</th>
+                            <th class="px-4 py-3">No Hp</th>
+                            <th class="px-4 py-3">Nama Barang</th>
+                            <th class="px-4 py-3">Jumlah</th>
+                            <th class="px-4 py-3">Durasi(Dropdown)</th>
+                            <th class="px-4 py-3">Total Sewa</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         @foreach ($latestOrders as $order)
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3 text-sm">
+                                    1
+                                </td>
+                                <td class="px-4 py-3 text-sm">
                                     {{ $order->user->name }}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
-                                    {{ $order->orderDetails->count() }}
-                                </td>
                                 <td class="px-4 py-3 text-xs">
-                                    @if ($order->displayStatus == 'pending')
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
-                                            Pending
-                                        </span>
-                                    @elseif ($order->displayStatus == 'confirmed')
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                            Confirmed
-                                        </span>
-                                    @elseif ($order->displayStatus == 'on_rent')
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                            On Rent
-                                        </span>
-                                    @elseif ($order->displayStatus == 'completed')
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                            Completed
-                                        </span>
-                                    @elseif ($order->displayStatus == 'overdue')
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
-                                            Overdue
-                                        </span>
-                                    @elseif ($order->displayStatus == 'cancelled')
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
-                                            Cancelled
-                                        </span>
-                                    @endif
+                                    12345678910
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    <div class="flex items-center space-x-4 text-sm">
-                                        <a href="{{ route('admin.orders.show', $order->id) }}"
-                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                            aria-label="Edit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                            </svg>
-                                        </a>
-                                    </div>
+                                    Carrier 60L
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    5
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    Kategori 1
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    Rp.500.000
                                 </td>
                             </tr>
                         @endforeach
