@@ -1,17 +1,22 @@
-<nav class="navbar navbar-expand-lg main-navbar">
-    <form class="form-inline mr-auto">
-        <ul class="navbar-nav mr-3">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
-                        class="fas fa-search"></i></a></li>
-        </ul>
-        <x-search />
-    </form>
-    <ul class="navbar-nav navbar-right">
-        <li class="dropdown"><a href="#" data-toggle="dropdown"
-                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
-            </a>
-        </li>
-    </ul>
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <div class="flex items-center gap-6">
+      <img src="/img/logo.png" alt="Logo" class="w-10 h-10">
+      <ul class="hidden md:flex gap-6 text-sm font-medium">
+        <li><a href="#" class="hover:text-green-600">Kategori</a></li>
+        <li><a href="#" class="hover:text-green-600">Cara Sewa</a></li>
+        <li><a href="#" class="hover:text-green-600">Kontak</a></li>
+      </ul>
+    </div>
+
+    <div class="flex items-center gap-6 text-sm font-medium">
+      <a href="#" class="hover:text-green-600 flex items-center gap-1">
+        <span class="material-icons">person</span> Masuk
+      </a>
+      <a href="#" class="relative">
+        <span class="material-icons">shopping_cart</span>
+        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
+      </a>
+    </div>
+  </div>
 </nav>

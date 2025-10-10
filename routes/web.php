@@ -17,21 +17,21 @@ use App\Http\Controllers\admin\DashboardController;
 | All routes for authentication.
 |
 */
-    // Login Route
-    Route::get('/login', [LoginController::class, 'login'])->name('login');
-    Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
-    
-    // Logout Route
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Login Route
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
 
-    // Register Route
-    Route::get('/register', [RegisterController::class, 'register'])->name('register');
-    Route::post('/register', [RegisterController::class, 'handleRegister'])->name('register.post');
-    Route::get('/email/verify', [RegisterController::class, 'verification'])->middleware('auth')->name('verification.notice');
+// Logout Route
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    // Email Verification Route
-    Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
-    Route::post('/email/verification-notification', [RegisterController::class, 'resendVerification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+// Register Route
+Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/register', [RegisterController::class, 'handleRegister'])->name('register.post');
+Route::get('/email/verify', [RegisterController::class, 'verification'])->middleware('auth')->name('verification.notice');
+
+// Email Verification Route
+Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('/email/verification-notification', [RegisterController::class, 'resendVerification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
 
@@ -44,7 +44,7 @@ use App\Http\Controllers\admin\DashboardController;
 |
 */
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
 
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('index');
