@@ -133,36 +133,52 @@
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3">No</th>
                             <th class="px-4 py-3">Nama Customer</th>
-                            <th class="px-4 py-3">No Hp</th>
+                            <th class="px-4 py-3">No. Hp</th>
                             <th class="px-4 py-3">Nama Barang</th>
-                            <th class="px-4 py-3">Jumlah</th>
-                            <th class="px-4 py-3">Durasi(Dropdown)</th>
+                            <th class="px-4 py-3">Paket Durasi</th>
                             <th class="px-4 py-3">Total Sewa</th>
+                            <th class="px-4 py-3">Waktu Checkout</th>
+                            <th class="px-4 py-3"></th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         @foreach ($latestOrders as $order)
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3 text-sm">
-                                    1
+                                    {{ $loop->iteration }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $order->user->name }}
                                 </td>
                                 <td class="px-4 py-3 text-xs">
-                                    12345678910
+                                    {{ $order->user->no_hp }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    Carrier 60L
-                                </td>
-                                <td class="px-4 py-3 text-sm">
-                                    5
+                                    @foreach ($order->orderDetails as $item)
+                                        {{ $item->product->name . ' x' . $item->quantity }} <br>
+                                    @endforeach
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     Kategori 1
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    Rp.500.000
+                                    {{ 'Rp.' . number_format($order->total_price, 0, ',', '.') }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{ $order->created_at->translatedFormat('d F Y, H:i') }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    <div class="flex items-center space-x-4 text-sm">
+                                        <a href="{{ route('admin.orders.show', $order->id) }}"
+                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                            aria-label="Edit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
