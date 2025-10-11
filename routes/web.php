@@ -17,6 +17,7 @@ use App\Http\Controllers\admin\DashboardController;
 | All routes for authentication.
 |
 */
+
 // Login Route
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
