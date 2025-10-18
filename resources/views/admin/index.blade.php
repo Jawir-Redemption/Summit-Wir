@@ -19,7 +19,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Total Users
+                        Total Pengguna
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $totalUsers }}
@@ -37,7 +37,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Revenue
+                        Pendapatan 
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         Rp {{ number_format($revenue, 0, ',', '.') }}
@@ -55,7 +55,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Total Orders
+                        Total Pesanan
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $totalOrders }}
@@ -70,12 +70,10 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                     </svg>
-
-
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Total Products
+                        Total Produk
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $totalProducts }}
@@ -94,7 +92,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Pending Orders
+                        Pending Order
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $pendingOrders }}
@@ -112,7 +110,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Failed Orders
+                        Cancel Order
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $failedOrders }}
@@ -138,7 +136,7 @@
                             <th class="px-4 py-3">Paket Durasi</th>
                             <th class="px-4 py-3">Total Sewa</th>
                             <th class="px-4 py-3">Waktu Checkout</th>
-                            <th class="px-4 py-3"></th>
+                            <th class="px-4 py-3">Invoice</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -186,5 +184,22 @@
                 </table>
             </div>
         </div>
+
+        {{-- Grafik --}}    
+        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300 text-center">
+                Grafik
+            </h4>
+            <canvas id="line"></canvas>
+            <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
+                <!-- Chart legend -->
+                <div class="flex items-center">
+                    <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
+                    <span>Pemasukkan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
 @endsection

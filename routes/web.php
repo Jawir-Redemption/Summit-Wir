@@ -59,8 +59,8 @@ Route::prefix('admin')
         // Product Management
         Route::resource('products', ProductController::class);
 
-        // Category Management
-        Route::resource('categories', CategoryController::class)->except(['show']);
+        // // Category Management
+        // Route::resource('categories', CategoryController::class)->except(['show']);
 
         // Order Management
         Route::resource('orders', OrderController::class)->except(['destroy']);
