@@ -80,7 +80,6 @@
                     <span class="ml-4">Users</span>
                 </a>
             </li>
-
         </ul>
     </div>
 </aside>
