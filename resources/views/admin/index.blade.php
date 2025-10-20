@@ -37,7 +37,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Pendapatan 
+                        Pendapatan
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         Rp {{ number_format($revenue, 0, ',', '.') }}
@@ -185,10 +185,10 @@
             </div>
         </div>
 
-        {{-- Grafik --}}    
+        {{-- Grafik --}}
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300 text-center">
-                Grafik
+                Grafik Pendapatan Bulanan
             </h4>
             <canvas id="line"></canvas>
             <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">

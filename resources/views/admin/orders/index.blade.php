@@ -65,12 +65,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="mt-6 flex justify-center">
-                    <div class="bg-gray-700 rounded-lg p-2">
-                        {{ $orders->links() }}
-                    </div>
-                </div>
-                
+                {{ $orders->links('vendor.pagination.table') }}
+
+
             </div>
         </div>
     </div>
