@@ -15,33 +15,6 @@
                 <h1 class="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
 
                 <div class="w-full flex-1 mt-8">
-                    <!-- Social Login Buttons -->
-                    <div class="flex flex-col items-center">
-                        <button
-                            class="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center hover:shadow">
-                            <div class="bg-white p-2 rounded-full">
-                                <svg class="w-4" viewBox="0 0 533.5 544.3"><path fill="#4285f4"
-                                        d="M533.5 278.4c0-18.5-1.5-37.1..." /></svg>
-                            </div>
-                            <span class="ml-4">Sign Up with Google</span>
-                        </button>
-
-                        <button
-                            class="mt-5 w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center hover:shadow">
-                            <div class="bg-white p-1 rounded-full">
-                                <svg class="w-6" viewBox="0 0 32 32"><path fill-rule="evenodd"
-                                        d="M16 4C9.371 4 4 9.371..." /></svg>
-                            </div>
-                            <span class="ml-4">Sign Up with GitHub</span>
-                        </button>
-                    </div>
-
-                    <!-- Divider -->
-                    <div class="my-12 border-b text-center">
-                        <div class="px-2 inline-block text-sm text-gray-600 bg-white translate-y-1/2">
-                            Or sign up with e-mail
-                        </div>
-                    </div>
 
                     <!-- Form -->
                     <div class="mx-auto max-w-xs">

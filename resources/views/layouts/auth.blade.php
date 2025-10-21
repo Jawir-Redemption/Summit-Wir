@@ -24,8 +24,6 @@
 
 <body class="font-sans antialiased bg-cover bg-center bg-no-repeat" style="background-image: url('/img/TEST.jpg');">
 
-    {{-- Navbar --}}
-    @include('components.navbar')
 
     {{-- Konten Halaman --}}
     <main class="pt-24">
