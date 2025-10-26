@@ -15,16 +15,6 @@ class PageController extends Controller
     {
         $categories = Category::all();
 
-        // $query = Product::query();
-
-        // if ($request->filled('category')) {
-        //     $query->where('category_id', $request->category);
-        // }
-
-        // if ($request->filled('search')) {
-        //     $query->where('name', 'like', '%' . $request->search . '%');
-        // }
-
         $products = Product::orderBy('sold', 'desc')->take(12)->get();
 
         $cartItems = [];
@@ -35,5 +25,36 @@ class PageController extends Controller
         }
 
         return view('customer.home', compact('categories', 'products', 'cartItems'));
+    }
+
+    public function products(Request $request)
+    {
+        $categories = Category::all();
+
+        $query = Product::query();
+
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $products = $query->get();
+
+        $cartItems = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cartItems = CartItem::with('product')->where('user_id', $user->id)->get();
+        }
+
+        return view('customer.products', compact('categories', 'products', 'cartItems'));
+    }
+
+    public function howToOrder()
+    {
+        return view('customer.how_to_order');
     }
 }
