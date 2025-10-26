@@ -59,6 +59,14 @@ class OrderController extends Controller
             'additional_fine' => 'nullable|numeric|min:0',
         ]);
 
+        if ($validated['status'] === 'completed') {
+            $order->orderDetails->each(function ($detail) {
+                $product = $detail->product;
+                $product->sold += $detail->quantity;
+                $product->save();
+            });
+        }
+
         $order->update($validated);
         return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully.');
     }
