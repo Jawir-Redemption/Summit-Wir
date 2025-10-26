@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\customer\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,14 @@ Route::prefix('admin')
         // User Management
         Route::resource('users', UserController::class)->except(['create', 'store']);
     });
+
+/*
+|--------------------------------------------------------------------------
+| Customer Routes
+|--------------------------------------------------------------------------
+|
+| All routes for customer side.
+|
+*/
+
+Route::get('/', [PageController::class, 'home'])->name('home');
