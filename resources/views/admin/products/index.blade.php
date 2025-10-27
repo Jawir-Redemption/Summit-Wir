@@ -8,6 +8,10 @@
         <!-- New Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mb-8">
             <div class="w-full overflow-x-auto">
+                <a href="{{ route('admin.products.create') }}"
+                    class="inline-block px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Tambah Produk
+                </a><br><br>
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr
@@ -46,7 +50,7 @@
                                 <td class="px-4 py-3 text-xs">
                                     {{ $product->image }}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                {{-- <td class="px-4 py-3 text-sm">
                                     <div class="flex items-center space-x-4 text-sm">
                                         <a href="{{ route('admin.products.show', $product->id) }}"
                                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
@@ -58,25 +62,76 @@
                                             </svg>
                                         </a>
                                     </div>
-                                    <a href="{{ route('admin.products.create') }}">
-                                        Tambah Produk
+                                    <a href="{{ route('admin.products.edit', $product->id) }}"
+                                        class="!bg-yellow-500 hover:!bg-yellow-600 text-white font-semibold py-1 px-3 rounded-md inline-block">
+                                        Edit
                                     </a>
-                                    <a class="btn btn-warning" href="{{ route('admin.products.edit', $product->id) }}">
-                                        Edit Produk
-                                    </a>
-                                    <form onclick="return confirm('Are you sure?')"
-                                        action="{{ route('admin.products.destroy', $product->id) }}" method="post"
-                                        style="display: inline;">
+                                    <form id="delete-form-{{ $product->id }}"
+                                        action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
+                                        class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger">Delete</button>
+                                        <button type="button" onclick="confirmDelete('{{ $product->id }}')"
+                                            class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-md">
+                                            Hapus
+                                        </button>
                                     </form>
+                                </td> --}}
+                                <td class="px-4 py-3 text-sm">
+                                    <div class="flex items-center space-x-2">
+                                        {{-- Tombol Lihat --}}
+                                        <a href="{{ route('admin.products.show', $product->id) }}"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-md transition-colors duration-200">
+                                            Lihat
+                                        </a>
+
+                                        {{-- Tombol Edit --}}
+                                        <a href="{{ route('admin.products.edit', $product->id) }}"
+                                            class="bg-amber-400 hover:bg-amber-500 text-white font-semibold py-1 px-3 rounded-md transition-colors duration-200">
+                                            Edit
+                                        </a>
+
+                                        {{-- Tombol Hapus --}}
+                                        <form id="delete-form-{{ $product->id }}"
+                                            action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
+                                            class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" onclick="confirmDelete('{{ $product->id }}')"
+                                                class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-md transition-colors duration-200">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
                 {{ $products->links('vendor.pagination.table') }}
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    function confirmDelete(productId) {
+                        Swal.fire({
+                            title: 'Yakin ingin menghapus produk ini?',
+                            text: "Data yang dihapus tidak bisa dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#e3342f',
+                            cancelButtonColor: '#6b7280',
+                            confirmButtonText: 'Ya, hapus!',
+                            cancelButtonText: 'Batal',
+                            background: '#1f2937',
+                            color: '#fff'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('delete-form-' + productId).submit();
+                            }
+                        });
+                    }
+                </script>
+
             </div>
         </div>
     </div>
