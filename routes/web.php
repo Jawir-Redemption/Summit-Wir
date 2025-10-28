@@ -63,9 +63,14 @@ Route::prefix('admin')
         // Order Management
         Route::resource('orders', OrderController::class)->except(['destroy']);
 
+        // Update status order
+        Route::put('orders/{order}/status', [OrderController::class, 'updateStatus'])
+            ->name('orders.updateStatus');
+
         // User Management
         Route::resource('users', UserController::class)->except(['create', 'store']);
     });
+
 
 /*
 |--------------------------------------------------------------------------

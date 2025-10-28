@@ -12,29 +12,29 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $totalOrders = Order::count();
         $totalUsers = User::where('role', 'user')->count();
+        $revenue = Order::whereIn('status', ['completed'])->sum('total_price');
+        $totalOrders = Order::count();
         $totalProducts = Product::count();
-        $successOrders = Order::where('status', 'completed')->count();
         $pendingOrders = Order::where('status', 'pending')->count();
         $failedOrders = Order::where('status', 'cancelled')->count();
-        $revenue = Order::whereIn('status', ['completed'])->sum('total_price');
         $latestOrders = Order::with(['orderDetails', 'user'])
             ->latest()
             ->take(10)
             ->get();
+        // $successOrders = Order::where('status', 'completed')->count();
 
         return view(
             'admin.index',
             compact(
+                'totalUsers',
+                'revenue',
                 'totalOrders',
                 'totalProducts',
-                'successOrders',
                 'pendingOrders',
                 'failedOrders',
                 'latestOrders',
-                'totalUsers',
-                'revenue',
+                // 'successOrders',
             ),
         );
     }
