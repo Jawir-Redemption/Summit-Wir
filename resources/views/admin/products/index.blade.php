@@ -48,7 +48,7 @@
                                 </td>
                                 <td class="px-4 py-3 text-xs">
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                                        class="w-16 h-16 object-cover">
+                                        class="w-16 h-16 object-cover" style="width: 200px; height: auto;">
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     <div class="flex items-center space-x-2">
