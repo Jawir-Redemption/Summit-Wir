@@ -50,7 +50,7 @@
                                     {{ $order->created_at->format('d M Y, H:i') }}
                                 </td>
                                 <td class="px-4 py-2 text-sm">
-                                    <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST">
+                                    <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <select name="status" onchange="this.form.submit()"
@@ -58,14 +58,14 @@
                                             <option value="pending" style="color: orange;"
                                                 {{ $order->status == 'pending' ? 'selected' : '' }}>
                                                 Pending</option>
-                                            <option value="ongoing" {{ $order->status == 'ongoing' ? 'selected' : '' }}>
-                                                Ongoing</option>
+                                            <option value="on_rent" {{ $order->status == 'on_rent' ? 'selected' : '' }}>
+                                                Dalam Penyewaan</option>
                                             <option value="overdue" {{ $order->status == 'overdue' ? 'selected' : '' }}>
-                                                Overdue</option>
+                                                Terlambat</option>
                                             <option value="completed"
-                                                {{ $order->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                                                {{ $order->status == 'completed' ? 'selected' : '' }}>Selesai</option>
                                             <option value="cancelled"
-                                                {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                                {{ $order->status == 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
                                         </select>
                                     </form>
                                 </td>
