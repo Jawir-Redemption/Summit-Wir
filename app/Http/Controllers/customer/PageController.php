@@ -13,6 +13,7 @@ class PageController extends Controller
 {
     public function home(Request $request)
     {
+<<<<<<< HEAD
         // Ambil semua kategori (jika tabel kosong, tidak masalah)
         $categories = Category::all();
 
@@ -72,16 +73,55 @@ class PageController extends Controller
        // $categories = Category::all();
 
         // $query = Product::query();
+=======
+        // Ambil semua kategori
+        $categories = Category::all();
 
-        // if ($request->filled('category')) {
-        //     $query->where('category_id', $request->category);
-        // }
+        $query = Product::query();
+>>>>>>> d356222c334a0e120cc53a7bcafc42ba3e290dc3
 
-        // if ($request->filled('search')) {
-        //     $query->where('name', 'like', '%' . $request->search . '%');
-        // }
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
 
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+<<<<<<< HEAD
         //$products = Product::orderBy('sold', 'desc')->take(12)->get();
+=======
+        // Query produk (urutkan berdasarkan produk terbaru)
+        $products = $query->orderBy('created_at', 'desc')->take(12)->get();
+
+        // Data keranjang (jika user login)
+        $cartItems = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cartItems = CartItem::with('product')->where('user_id', $user->id)->get();
+        }
+
+        // Kirim data ke view
+        return view('customer.home', compact('categories', 'products', 'cartItems'));
+    }
+
+    public function products(Request $request)
+    {
+        $categories = Category::all();
+
+        $query = Product::query();
+
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $products = $query->get();
+>>>>>>> d356222c334a0e120cc53a7bcafc42ba3e290dc3
 
         //$cartItems = [];
 
@@ -90,6 +130,16 @@ class PageController extends Controller
         //    $cartItems = CartItem::with('product')->where('user_id', $user->id)->get();
         //}
 
+<<<<<<< HEAD
        // return view('customer.home', compact('categories', 'products', 'cartItems'));
     //} 
+=======
+        return view('customer.products', compact('categories', 'products', 'cartItems'));
+    }
+
+    public function howToOrder()
+    {
+        return view('customer.how_to_order');
+    }
+>>>>>>> d356222c334a0e120cc53a7bcafc42ba3e290dc3
 }

@@ -9,31 +9,28 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\customer\PageController;
+use App\Http\Controllers\customer\CartController;
+use App\Http\Controllers\customer\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
 | Authentication Routes
 |--------------------------------------------------------------------------
-|
-| All routes for authentication.
-|
 */
 
-// Login Route
+// Login & Logout
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
-
-// Logout Route
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Register Route
+// Register
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'handleRegister'])->name('register.post');
+
+// Email Verification
 Route::get('/email/verify', [RegisterController::class, 'verification'])
     ->middleware('auth')
     ->name('verification.notice');
-
-// Email Verification Route
 Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verify'])
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
@@ -43,27 +40,18 @@ Route::post('/email/verification-notification', [RegisterController::class, 'res
 
 /*
 |--------------------------------------------------------------------------
-| Admin Panel Routes
+| Admin Routes
 |--------------------------------------------------------------------------
-|
-| All routes for admin panel.
-|
 */
 
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'verified'])
     ->group(function () {
-        // Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('index');
-
-        // Product Management
         Route::resource('products', ProductController::class);
-
-        // Order Management
         Route::resource('orders', OrderController::class)->except(['destroy']);
-
-        // User Management
+        Route::put('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
         Route::resource('users', UserController::class)->except(['create', 'store']);
     });
 
@@ -71,11 +59,9 @@ Route::prefix('admin')
 |--------------------------------------------------------------------------
 | Customer Routes
 |--------------------------------------------------------------------------
-|
-| All routes for customer side.
-|
 */
 
+<<<<<<< HEAD
 Route::get('/home', [PageController::class, 'home'])->name('home');
 Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
 Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
@@ -92,3 +78,15 @@ Route::get('/guide', [PageController::class, 'guide'])->name('guide');
     //Route::get('/account', [PageController::class, 'account'])->name('account');
     //Route::get('/product-detail', [PageController::class, 'productDetail'])->name('product-detail');
 //});
+=======
+// Halaman utama bisa diakses tanpa login
+Route::get('/', [PageController::class, 'home'])->name('customer.home');
+
+// route yang butuh login
+// Route::middleware('auth')->group(function () {
+//     Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+//     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+//     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+//     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+// });
+>>>>>>> d356222c334a0e120cc53a7bcafc42ba3e290dc3
