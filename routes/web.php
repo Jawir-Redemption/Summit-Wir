@@ -76,4 +76,19 @@ Route::prefix('admin')
 |
 */
 
-Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/home', [PageController::class, 'home'])->name('home');
+Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
+Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
+Route::post('/cart/add/{id}', [PageController::class, 'addToCart'])->name('cart.add');
+Route::get('/guide', [PageController::class, 'guide'])->name('guide');
+
+
+//Route::prefix('customer')->group(function () {
+    //Route::get('/home', [PageController::class, 'home'])->name('home');
+    //Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
+    //Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+    //Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+    //Route::get('/guide', [PageController::class, 'guide'])->name('guide');
+    //Route::get('/account', [PageController::class, 'account'])->name('account');
+    //Route::get('/product-detail', [PageController::class, 'productDetail'])->name('product-detail');
+//});

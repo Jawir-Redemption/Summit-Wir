@@ -1,23 +1,17 @@
-<footer class="bg-black text-white py-10">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
-    <div>
-      <img src="/img/logo.png" alt="Logo" class="w-16 mb-3">
-    </div>
+<footer class="bg-dark text-light py-4 mt-5">
+    <div class="container text-center">
+        <h5 class="fw-bold mb-3">Summit Wir</h5>
+        <p class="mb-1">Perlengkapan outdoor terbaik untuk setiap petualangan.</p>
+        <p class="small mb-2">Email: summitwir@example.com | Telp: (021) 555-1234</p>
 
-    <div>
-      <h3 class="font-semibold mb-2">Informasi</h3>
-      <ul class="space-y-1 text-sm">
-        <li><a href="#" class="hover:underline">Cara sewa</a></li>
-        <li><a href="#" class="hover:underline">Cara jadi member</a></li>
-      </ul>
-    </div>
+        <div class="mt-3">
+            <a href="/" class="text-light text-decoration-none mx-2">Home</a> |
+            <a href="/products" class="text-light text-decoration-none mx-2">Products</a> |
+            <a href="/about" class="text-light text-decoration-none mx-2">About</a> |
+            <a href="/contact" class="text-light text-decoration-none mx-2">Contact</a>
+        </div>
 
-    <div>
-      <h3 class="font-semibold mb-2">Layanan Bantuan</h3>
-      <ul class="space-y-1 text-sm">
-        <li><a href="#" class="hover:underline">Kontak Kami</a></li>
-        <li><a href="#" class="hover:underline">WhatsApp Kami</a></li>
-      </ul>
+        <hr class="border-secondary my-3">
+        <p class="small mb-0">&copy; 2025 Summit Wir. All rights reserved.</p>
     </div>
-  </div>
 </footer>
