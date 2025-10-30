@@ -1,3 +1,4 @@
+<<<<<<< HEAD:resources/views/admin/categories/index.blade.php
 <!doctype html>
 <html lang="id">
 <head>
@@ -48,4 +49,13 @@ table th,table td{border:1px solid #ccc;padding:8px;text-align:left}
 <button type="submit">Sewa</button>
 </form>
 
+=======
+@extends('layouts.app')
+@section('title', 'Summit Wir')
+@section('content')
+    <section class="section">
+        <div class="section-header">
+            <h1>Cara Sewa</h1>
+        </div>
+>>>>>>> 377b19ff59fffa58cfe8cd6bc442497c75dd8f49:resources/views/customer/how_to_order.blade.php
 

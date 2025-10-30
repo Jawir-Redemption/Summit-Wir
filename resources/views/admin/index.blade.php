@@ -92,7 +92,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Pending Order
+                        Pesanan Tertunda
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $pendingOrders }}
@@ -110,7 +110,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Cancel Order
+                        Pesanan Dibatalkan
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $failedOrders }}
@@ -120,7 +120,7 @@
         </div>
 
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Latest Orders
+            Pesanan Terbaru
         </h2>
         <!-- New Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mb-8">
@@ -136,6 +136,7 @@
                             <th class="px-4 py-3">Paket Durasi</th>
                             <th class="px-4 py-3">Total Sewa</th>
                             <th class="px-4 py-3">Waktu Checkout</th>
+                            <th class="px-4 py-3">Status</th>
                             <th class="px-4 py-3">Invoice</th>
                         </tr>
                     </thead>
@@ -166,6 +167,9 @@
                                     {{ $order->created_at->translatedFormat('d F Y, H:i') }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
+                                    {{ $order->display_status }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
                                     <div class="flex items-center space-x-4 text-sm">
                                         <a href="{{ route('admin.orders.show', $order->id) }}"
                                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
@@ -186,7 +190,7 @@
         </div>
 
         {{-- Grafik --}}
-        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 mb-8">
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300 text-center">
                 Grafik Pendapatan Bulanan
             </h4>

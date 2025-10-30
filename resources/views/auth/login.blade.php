@@ -23,11 +23,13 @@
                     <input type="email" id="email" name="email" required
                         class="peer w-full border-b-2 border-gray-300 placeholder-transparent focus:outline-none 
                         focus:border-blue-500 text-gray-900 py-3 px-1"
-                        placeholder="Email address" />
+                        placeholder=" " />
                     <label for="email"
-                        class="absolute left-1 top-2 text-gray-500 text-sm transition-all 
-                        peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base 
-                        peer-focus:top-2 peer-focus:text-sm">
+                        class="absolute left-1 top-3 text-gray-500 transition-all duration-200
+                        peer-focus:top-0 peer-focus:text-xs
+                        peer-[&:not(:placeholder-shown)]:top-0
+                        peer-focus:text-blue-500
+                        peer-[&:not(:placeholder-shown)]:text-xs">
                         Email address
                     </label>
                 </div>
@@ -39,9 +41,10 @@
                         focus:border-blue-500 text-gray-900 py-3 px-1"
                         placeholder="Password" />
                     <label for="password"
-                        class="absolute left-1 top-2 text-gray-500 text-sm transition-all 
-                        peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base 
-                        peer-focus:top-2 peer-focus:text-sm">
+                        class="absolute left-1 top-3 text-gray-500 text-base transition-all duration-200
+                        peer-focus:top-0 peer-focus:text-xs 
+                        peer-focus:text-blue-500
+                        peer-valid:top-0 peer-valid:text-xs">
                         Password
                     </label>
                 </div>
@@ -61,27 +64,6 @@
                     Sign In
                 </button>
             </form>
-
-            <!-- Divider -->
-            <div class="flex items-center gap-4 my-6">
-                <hr class="flex-grow border-gray-300" />
-                <span class="text-gray-400 text-sm">OR</span>
-                <hr class="flex-grow border-gray-300" />
-            </div>
-
-            <!-- Social Logins -->
-            <div class="flex flex-col gap-4">
-                <button
-                    class="flex items-center justify-center gap-3 py-2 px-4 border border-gray-300 rounded-xl bg-white hover:bg-gray-100 transition">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google" />
-                    Continue with Google
-                </button>
-                <button
-                    class="flex items-center justify-center gap-3 py-2 px-4 border border-gray-300 rounded-xl bg-white hover:bg-gray-100 transition">
-                    <img src="https://www.svgrepo.com/show/512828/github-142.svg" class="w-5 h-5" alt="GitHub" />
-                    Continue with GitHub
-                </button>
-            </div>
 
             <!-- Sign Up Link -->
             <p class="text-center text-sm text-gray-600 mt-6">
