@@ -18,9 +18,7 @@ return new class extends Migration {
             $table->integer('duration');
             $table->bigInteger('total_price')->unsigned();
             $table->bigInteger('total_fine')->unsigned()->nullable();
-            $table->bigInteger('additional_fine')->unsigned()->nullable();
             $table->string('status')->nullable();
-            $table->string('note')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });

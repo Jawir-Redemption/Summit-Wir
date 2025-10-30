@@ -90,9 +90,7 @@ class DatabaseSeeder extends Seeder
                     'duration' => $duration,
                     'total_price' => 0,
                     'total_fine' => $status === 'completed' ? rand(0, 20000) : 0,
-                    'additional_fine' => $status === 'completed' ? rand(0, 10000) : 0,
                     'status' => $status,
-                    'note' => fake()->sentence(),
                 ]);
 
                 // 🧾 Add Order Details
@@ -110,7 +108,6 @@ class DatabaseSeeder extends Seeder
                         'product_id' => $product->id,
                         'quantity' => $qty,
                         'unit_price' => $unitPrice,
-                        'subtotal' => $subtotal,
                     ]);
                 }
 
@@ -131,9 +128,7 @@ class DatabaseSeeder extends Seeder
             'duration' => $duration,
             'total_price' => 0,
             'total_fine' => 0,
-            'additional_fine' => 0,
             'status' => 'on_rent',
-            'note' => 'Customer has not returned items yet.',
         ]);
 
         $product = $products->random();
@@ -145,7 +140,6 @@ class DatabaseSeeder extends Seeder
             'product_id' => $product->id,
             'quantity' => $qty,
             'unit_price' => $product->price,
-            'subtotal' => $subtotal,
         ]);
 
         $overdueOrder->update(['total_price' => $subtotal]);

@@ -92,7 +92,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Pending Order
+                        Pesanan Tertunda
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $pendingOrders }}
@@ -110,7 +110,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Cancel Order
+                        Pesanan Dibatalkan
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                         {{ $failedOrders }}
@@ -120,7 +120,7 @@
         </div>
 
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Latest Orders
+            Pesanan Terbaru
         </h2>
         <!-- New Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mb-8">
@@ -186,7 +186,7 @@
         </div>
 
         {{-- Grafik --}}
-        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 mb-8">
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300 text-center">
                 Grafik Pendapatan Bulanan
             </h4>

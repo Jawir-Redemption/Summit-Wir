@@ -51,23 +51,4 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
-    {
-        $validated = $request->validate([
-            'status' => 'nullable|string|max:50',
-            'note' => 'nullable|string|max:255',
-            'additional_fine' => 'nullable|numeric|min:0',
-        ]);
-
-        if ($validated['status'] === 'completed') {
-            $order->orderDetails->each(function ($detail) {
-                $product = $detail->product;
-                $product->sold += $detail->quantity;
-                $product->save();
-            });
-        }
-
-        $order->update($validated);
-        return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully.');
-    }
 }
