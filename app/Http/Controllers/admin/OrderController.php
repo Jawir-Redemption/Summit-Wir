@@ -53,12 +53,16 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
+        // Validasi hanya untuk status
         $validated = $request->validate([
-            'status' => 'nullable|string|max:50',
-            'note' => 'nullable|string|max:255',
-            'additional_fine' => 'nullable|numeric|min:0',
+            'status' => 'required|string|in:pending,ongoing,overdue,completed,cancelled',
         ]);
 
+        // Update status
+        $order->status = $validated['status'];
+        $order->save();
+
+        // Jika status jadi completed, update stock/sold produk
         if ($validated['status'] === 'completed') {
             $order->orderDetails->each(function ($detail) {
                 $product = $detail->product;
@@ -67,7 +71,6 @@ class OrderController extends Controller
             });
         }
 
-        $order->update($validated);
-        return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully.');
+        return redirect()->back()->with('success', 'Status order berhasil diperbarui.');
     }
 }
