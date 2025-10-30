@@ -13,10 +13,23 @@ class PageController extends Controller
 {
     public function home(Request $request)
     {
+        // Ambil semua kategori
         $categories = Category::all();
 
-        $products = Product::orderBy('sold', 'desc')->take(12)->get();
+        $query = Product::query();
 
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Query produk (urutkan berdasarkan produk terbaru)
+        $products = $query->orderBy('created_at', 'desc')->take(12)->get();
+
+        // Data keranjang (jika user login)
         $cartItems = [];
 
         if (Auth::check()) {
@@ -24,6 +37,7 @@ class PageController extends Controller
             $cartItems = CartItem::with('product')->where('user_id', $user->id)->get();
         }
 
+        // Kirim data ke view
         return view('customer.home', compact('categories', 'products', 'cartItems'));
     }
 

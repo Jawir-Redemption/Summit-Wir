@@ -51,4 +51,26 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    public function update(Request $request, Order $order)
+    {
+        // Validasi hanya untuk status
+        $validated = $request->validate([
+            'status' => 'required|string|in:pending,ongoing,overdue,completed,cancelled',
+        ]);
+
+        // Update status
+        $order->status = $validated['status'];
+        $order->save();
+
+        // Jika status jadi completed, update stock/sold produk
+        if ($validated['status'] === 'completed') {
+            $order->orderDetails->each(function ($detail) {
+                $product = $detail->product;
+                $product->sold += $detail->quantity;
+                $product->save();
+            });
+        }
+
+        return redirect()->back()->with('success', 'Status order berhasil diperbarui.');
+    }
 }

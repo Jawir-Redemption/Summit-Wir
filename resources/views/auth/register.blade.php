@@ -1,56 +1,95 @@
 @extends('layouts.auth')
 
-@section('title', 'Register Page - Shoes')
+@section('title', 'Register - Shoes')
 
 @section('content')
-<div class="min-h-screen flex justify-center">
-    <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
-        <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-            <div>
-                <img src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png"
-                    class="w-32 mx-auto" />
-            </div>
+    <div class="min-h-screen flex justify-center py-12 px-4">
+        <div class="bg-white shadow-lg rounded-2xl flex w-full max-w-4xl overflow-hidden">
 
-            <div class="mt-12 flex flex-col items-center">
-                <h1 class="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
+            <!-- Form -->
+            <div class="w-full lg:w-1/2 p-8 sm:p-10">
+                <h2 class="text-2xl font-bold text-gray-800 text-center">Create Your Account</h2>
 
-                <div class="w-full flex-1 mt-8">
+                <form class="mt-8 space-y-6" method="POST" action="{{ route('register.post') }}">
+                    @csrf
 
-                    <!-- Form -->
-                    <div class="mx-auto max-w-xs">
-                        <input
-                            class="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                            type="email" placeholder="Email" />
-                        <input
-                            class="w-full mt-5 px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                            type="password" placeholder="Password" />
-
-                        <button
-                            class="mt-5 w-full py-4 rounded-lg font-semibold bg-indigo-500 hover:bg-indigo-700 text-white flex items-center justify-center transition-all duration-300">
-                            <svg class="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                                <circle cx="8.5" cy="7" r="4" />
-                                <path d="M20 8v6M23 11h-6" />
-                            </svg>
-                            <span class="ml-3">Sign Up</span>
-                        </button>
-
-                        <p class="mt-6 text-xs text-gray-600 text-center">
-                            I agree to abide by <a href="#" class="text-blue-500">Terms</a> &
-                            <a href="#" class="text-blue-500">Privacy Policy</a>
-                        </p>
+                    <!-- Full Name -->
+                    <div class="relative">
+                        <input type="text" name="name" id="name" required
+                            class="peer w-full border-b-2 border-gray-300 focus:border-indigo-500 outline-none py-3 placeholder-transparent"
+                            placeholder="Full Name">
+                        <label for="name"
+                            class="absolute left-0 top-3 text-gray-500 transition-all peer-focus:-top-2 peer-focus:text-sm peer-focus:text-indigo-500 peer-valid:-top-2 peer-valid:text-sm">
+                            Full Name
+                        </label>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Right Side Image -->
-        <div class="flex-1 bg-indigo-100 text-center hidden lg:flex">
-            <div class="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
-                style="background-image: url('https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg');">
+                    <!-- Email -->
+                    <div class="relative">
+                        <input type="email" name="email" id="email" required
+                            class="peer w-full border-b-2 border-gray-300 focus:border-indigo-500 outline-none py-3 placeholder-transparent"
+                            placeholder="Email">
+                        <label for="email"
+                            class="absolute left-0 top-3 text-gray-500 transition-all peer-focus:-top-2 peer-focus:text-sm peer-focus:text-indigo-500 peer-valid:-top-2 peer-valid:text-sm">
+                            Email Address
+                        </label>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="relative">
+                        <input type="text" name="phone" id="phone" required
+                            class="peer w-full border-b-2 border-gray-300 focus:border-indigo-500 outline-none py-3 placeholder-transparent"
+                            placeholder="Phone Number">
+                        <label for="phone"
+                            class="absolute left-0 top-3 text-gray-500 transition-all peer-focus:-top-2 peer-focus:text-sm peer-focus:text-indigo-500 peer-valid:-top-2 peer-valid:text-sm">
+                            Phone Number
+                        </label>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="relative">
+                        <input type="password" name="password" id="password" required
+                            class="peer w-full border-b-2 border-gray-300 focus:border-indigo-500 outline-none py-3 placeholder-transparent"
+                            placeholder="Password">
+                        <label for="password"
+                            class="absolute left-0 top-3 text-gray-500 transition-all peer-focus:-top-2 peer-focus:text-sm peer-focus:text-indigo-500 peer-valid:-top-2 peer-valid:text-sm">
+                            Password
+                        </label>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="relative">
+                        <input type="password" name="password_confirmation" id="password_confirmation" required
+                            class="peer w-full border-b-2 border-gray-300 focus:border-indigo-500 outline-none py-3 placeholder-transparent"
+                            placeholder="Confirm Password">
+                        <label for="password_confirmation"
+                            class="absolute left-0 top-3 text-gray-500 transition-all peer-focus:-top-2 peer-focus:text-sm peer-focus:text-indigo-500 peer-valid:-top-2 peer-valid:text-sm">
+                            Confirm Password
+                        </label>
+                    </div>
+
+                    <button
+                        class="w-full mt-6 bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-3 rounded-lg transition duration-300">
+                        Sign Up
+                    </button>
+
+                    <p class="text-center text-xs text-gray-500 mt-4">
+                        I agree to the <a href="#" class="text-indigo-500">Terms</a> & <a href="#"
+                            class="text-indigo-500">Privacy Policy</a>
+                    </p>
+                </form>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+            </div>
+
+            <!-- Right Image -->
+            <div class="hidden lg:flex w-1/2 bg-indigo-50 justify-center items-center">
+                <img src="https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg"
+                    class="w-80" alt="Illustration">
             </div>
         </div>
     </div>
-</div>
 @endsection

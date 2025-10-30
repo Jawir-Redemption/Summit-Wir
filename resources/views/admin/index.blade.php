@@ -136,6 +136,7 @@
                             <th class="px-4 py-3">Paket Durasi</th>
                             <th class="px-4 py-3">Total Sewa</th>
                             <th class="px-4 py-3">Waktu Checkout</th>
+                            <th class="px-4 py-3">Status</th>
                             <th class="px-4 py-3">Invoice</th>
                         </tr>
                     </thead>
@@ -164,6 +165,9 @@
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $order->created_at->translatedFormat('d F Y, H:i') }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{ $order->status }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     <div class="flex items-center space-x-4 text-sm">
