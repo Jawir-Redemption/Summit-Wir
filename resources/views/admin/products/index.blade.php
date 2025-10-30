@@ -21,7 +21,6 @@
                             <th class="px-4 py-3">Deskripsi</th>
                             <th class="px-4 py-3">Harga</th>
                             <th class="px-4 py-3">Stok</th>
-                            <th class="px-4 py-3">Kondisi</th>
                             <th class="px-4 py-3">Gambar</th>
                             <th class="px-4 py-3">Aksi</th>
                         </tr>
@@ -45,38 +44,8 @@
                                     {{ $product->stock }}
                                 </td>
                                 <td class="px-4 py-3 text-xs">
-                                    {{ $product->condition }}
-                                </td>
-                                <td class="px-4 py-3 text-xs">
                                     {{ $product->image }}
                                 </td>
-                                {{-- <td class="px-4 py-3 text-sm">
-                                    <div class="flex items-center space-x-4 text-sm">
-                                        <a href="{{ route('admin.products.show', $product->id) }}"
-                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                            aria-label="Edit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    <a href="{{ route('admin.products.edit', $product->id) }}"
-                                        class="!bg-yellow-500 hover:!bg-yellow-600 text-white font-semibold py-1 px-3 rounded-md inline-block">
-                                        Edit
-                                    </a>
-                                    <form id="delete-form-{{ $product->id }}"
-                                        action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
-                                        class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" onclick="confirmDelete('{{ $product->id }}')"
-                                            class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-md">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </td> --}}
                                 <td class="px-4 py-3 text-sm">
                                     <div class="flex items-center space-x-2">
                                         {{-- Tombol Lihat --}}

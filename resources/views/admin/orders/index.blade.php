@@ -50,22 +50,26 @@
                                     {{ $order->created_at->format('d M Y, H:i') }}
                                 </td>
                                 <td class="px-4 py-2 text-sm">
-                                    <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST">
+                                    <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <select name="status" onchange="this.form.submit()"
                                             class="border rounded-lg px-2 py-1 text-sm focus:ring focus:ring-purple-300 dark:bg-gray-800 dark:text-gray-200">
                                             <option value="pending" style="color: orange;"
-                                                {{ $order->status == 'pending' ? 'selected' : '' }}>
+                                                {{ $order->display_status == 'pending' ? 'selected' : '' }}>
                                                 Pending</option>
-                                            <option value="ongoing" {{ $order->status == 'ongoing' ? 'selected' : '' }}>
+                                            <option value="ongoing"
+                                                {{ $order->display_status == 'ongoing' ? 'selected' : '' }}>
                                                 Ongoing</option>
-                                            <option value="overdue" {{ $order->status == 'overdue' ? 'selected' : '' }}>
+                                            <option value="overdue"
+                                                {{ $order->display_status == 'overdue' ? 'selected' : '' }}>
                                                 Overdue</option>
                                             <option value="completed"
-                                                {{ $order->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                                                {{ $order->display_status == 'completed' ? 'selected' : '' }}>Completed
+                                            </option>
                                             <option value="cancelled"
-                                                {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                                {{ $order->display_status == 'cancelled' ? 'selected' : '' }}>Cancelled
+                                            </option>
                                         </select>
                                     </form>
                                 </td>
