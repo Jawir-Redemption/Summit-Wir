@@ -61,13 +61,9 @@ Route::prefix('admin')
 |--------------------------------------------------------------------------
 */
 
-// Halaman utama bisa diakses tanpa login
-Route::get('/', [PageController::class, 'home'])->name('customer.home');
 
-// route yang butuh login
-// Route::middleware('auth')->group(function () {
-//     Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-//     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-//     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-//     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
-// });
+Route::get('/home', [PageController::class, 'home'])->name('home');
+Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
+Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
+Route::post('/cart/add/{id}', [PageController::class, 'addToCart'])->name('cart.add');
+Route::get('/guide', [PageController::class, 'guide'])->name('guide');
