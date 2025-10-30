@@ -66,7 +66,6 @@ class DatabaseSeeder extends Seeder
                         'description' => "Durable and reliable {$category->category} item for mountain use.",
                         'price' => rand(50000, 150000),
                         'stock' => rand(5, 20),
-                        'condition' => 'Good',
                         'image' => 'products/product.jpg',
                     ]),
                 );

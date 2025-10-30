@@ -56,7 +56,7 @@
                                         <select name="status" onchange="this.form.submit()"
                                             class="border rounded-lg px-2 py-1 text-sm focus:ring focus:ring-purple-300 dark:bg-gray-800 dark:text-gray-200">
                                             <option value="pending" style="color: orange;"
-                                                {{ $order->status == 'pending' ? 'selected' : '' }}>
+                                                {{ $order->display_status == 'pending' ? 'selected' : '' }}>
                                                 Pending</option>
                                             <option value="on_rent" {{ $order->status == 'on_rent' ? 'selected' : '' }}>
                                                 Dalam Penyewaan</option>
