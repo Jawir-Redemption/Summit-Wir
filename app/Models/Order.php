@@ -16,8 +16,6 @@ class Order extends Model
         'status',
         'total_price',
         'total_fine',
-        'additional_fine',
-        'note',
     ];
 
     protected $appends = ['displayStatus'];

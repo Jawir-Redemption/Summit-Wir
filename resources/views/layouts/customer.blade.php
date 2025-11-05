@@ -1,3 +1,4 @@
+{{-- resources/views/layouts/customer.blade.php --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,20 +9,45 @@
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font -->
+  <!-- [TAMBAHAN HANIF] Font Inter untuk konsistensi desain -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-</head>
-<body class="font-inter bg-gray-50 text-gray-800">
 
-  <!-- Navbar -->
+  <!-- [TAMBAHAN HANIF] Tambahan transition halus saat scroll -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+  {{-- [TETAP] Navbar & Header dipanggil dari komponen --}}
   @includeIf('components.navbar')
 
-  <main class="min-h-screen">
+  <main class="flex-grow">
     @yield('content')
   </main>
 
-  <!-- Footer -->
+  {{-- [TETAP] Footer dipanggil dari komponen --}}
   @includeIf('components.footer')
+
+  <!-- [TAMBAHAN HANIF] Script kecil untuk efek transparan navbar saat scroll -->
+  <script>
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar?.classList.add('backdrop-blur-md', 'bg-white/70', 'shadow-md');
+      } else {
+        navbar?.classList.remove('backdrop-blur-md', 'bg-white/70', 'shadow-md');
+      }
+    });
+  </script>
 
 </body>
 </html>

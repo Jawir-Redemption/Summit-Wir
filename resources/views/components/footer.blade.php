@@ -1,4 +1,4 @@
-<footer class="bg-dark text-light py-4 mt-5">
+<footer id="footer" class="bg-dark text-light py-4 mt-5">
     <div class="container text-center">
         <h5 class="fw-bold mb-3">Summit Wir</h5>
         <p class="mb-1">Perlengkapan outdoor terbaik untuk setiap petualangan.</p>

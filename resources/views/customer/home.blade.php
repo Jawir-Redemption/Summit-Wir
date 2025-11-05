@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('layouts.customer')
 
 @section('title', 'Beranda | SummitWirr')
@@ -6,7 +5,7 @@
 @section('content')
   {{-- HERO SECTION --}}
   <section id="hero" class="relative bg-cover bg-center bg-no-repeat h-[80vh]" 
-    style="background-image: url('{{ asset('assets/images/hero-bg.jpg') }}');">
+    style="background-image: url('{{ asset('assets/img/bg-tent.jpg') }}');">
     
     <div class="absolute inset-0 bg-black/50"></div>
 
@@ -23,13 +22,13 @@
 
       <div class="flex flex-wrap gap-4">
         {{-- Tombol ke semua produk --}}
-        <a href="{{ route('all-products') }}"
+        <a href="{{ route('customer.all-products') }}"
           class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium shadow-md transition">
           Lihat Semua Produk
         </a>
 
         {{-- Tombol ke panduan sewa --}}
-        <a href="{{ route('guide') }}"
+        <a href="{{ route('customer.guide') }}"
           class="px-6 py-3 bg-transparent border border-white hover:bg-white hover:text-gray-900 rounded-lg font-medium transition">
           Cara Sewa
         </a>
@@ -58,14 +57,14 @@
 
               <div class="flex justify-between items-center">
                 {{-- Detail produk --}}
-                <a href="{{ route('product-detail', ['id' => $product->id]) }}" 
+                <a href="{{ route('customer.product-detail', ['id' => $product->id]) }}" 
                    class="text-sm text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-lg">
                    Lihat Detail
                 </a>
 
                 {{-- Tombol tambah ke keranjang --}}
                 @auth
-                <form action="{{ route('cart.add', ['id' => $product->id]) }}" method="POST">
+                <form action="{{ route('customer.cart.add', ['id' => $product->id]) }}" method="POST">
                   @csrf
                   <button type="submit" 
                           class="text-sm text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white px-3 py-1.5 rounded-lg transition">
@@ -83,7 +82,7 @@
 
       {{-- Tombol ke semua produk --}}
       <div class="mt-12">
-        <a href="{{ route('all-products') }}" 
+        <a href="{{ route('customer.all-products') }}" 
            class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium shadow-md transition">
           Lihat Semua Produk
         </a>
@@ -91,35 +90,3 @@
     </div>
   </section>
 @endsection
-=======
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Customer Home</title>
-
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-
-    <body class="bg-light">
-
-        @if (session('success'))
-            <div class="container mt-4">
-                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                    <strong>{{ session('success') }}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-
-        <div class="container text-center mt-5">
-            <h2>KERJAKAN INDEXNYA WOI</h2>
-        </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
-
-</html>
->>>>>>> d356222c334a0e120cc53a7bcafc42ba3e290dc3

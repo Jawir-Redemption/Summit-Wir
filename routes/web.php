@@ -60,33 +60,20 @@ Route::prefix('admin')
 | Customer Routes
 |--------------------------------------------------------------------------
 */
+//Route::get('/home', [PageController::class, 'home'])->name('home'); 
+//Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products'); 
+//Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail'); 
+//Route::post('/cart/add/{id}', [PageController::class, 'addToCart'])->name('cart.add'); 
+//Route::get('/guide', [PageController::class, 'guide'])->name('guide');
 
-<<<<<<< HEAD
-Route::get('/home', [PageController::class, 'home'])->name('home');
-Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
-Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
-Route::post('/cart/add/{id}', [PageController::class, 'addToCart'])->name('cart.add');
-Route::get('/guide', [PageController::class, 'guide'])->name('guide');
+//ini route yang bener ya cug
+Route::prefix('customer')->name('customer.')->group(function () {
+    Route::get('/home', [PageController::class, 'home'])->name('home');
+    Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
+    Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+    Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+    Route::get('/guide', [PageController::class, 'guide'])->name('guide');
+    Route::get('/account', [PageController::class, 'account'])->name('account');
+    Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
+});
 
-
-//Route::prefix('customer')->group(function () {
-    //Route::get('/home', [PageController::class, 'home'])->name('home');
-    //Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
-    //Route::get('/cart', [PageController::class, 'cart'])->name('cart');
-    //Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
-    //Route::get('/guide', [PageController::class, 'guide'])->name('guide');
-    //Route::get('/account', [PageController::class, 'account'])->name('account');
-    //Route::get('/product-detail', [PageController::class, 'productDetail'])->name('product-detail');
-//});
-=======
-// Halaman utama bisa diakses tanpa login
-Route::get('/', [PageController::class, 'home'])->name('customer.home');
-
-// route yang butuh login
-// Route::middleware('auth')->group(function () {
-//     Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-//     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-//     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-//     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
-// });
->>>>>>> d356222c334a0e120cc53a7bcafc42ba3e290dc3
