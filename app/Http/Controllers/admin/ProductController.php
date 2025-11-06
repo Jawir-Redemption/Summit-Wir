@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,7 +23,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all(); // ambil semua kategori
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -36,7 +38,6 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'category_id' => 'nullable|exists:categories,id',
-            'condition' => 'nullable|string|max:100',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
 
@@ -77,7 +78,6 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'category_id' => 'nullable|exists:categories,id',
-            'condition' => 'nullable|string|max:100',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ]);
 

@@ -51,7 +51,7 @@ Route::prefix('admin')
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::resource('products', ProductController::class);
         Route::resource('orders', OrderController::class)->except(['destroy']);
-        Route::put('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+        Route::put('orders/{order}/status', [OrderController::class, 'update'])->name('orders.update');
         Route::resource('users', UserController::class)->except(['create', 'store']);
     });
 
@@ -76,4 +76,3 @@ Route::prefix('customer')->name('customer.')->group(function () {
     Route::get('/account', [PageController::class, 'account'])->name('account');
     Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
 });
-

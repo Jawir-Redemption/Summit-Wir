@@ -167,7 +167,7 @@
                                     {{ $order->created_at->translatedFormat('d F Y, H:i') }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $order->status }}
+                                    {{ $order->display_status }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     <div class="flex items-center space-x-4 text-sm">
@@ -203,7 +203,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 @endsection
