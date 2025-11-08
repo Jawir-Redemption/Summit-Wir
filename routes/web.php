@@ -61,14 +61,14 @@ Route::prefix('admin')
 | Customer Routes
 |--------------------------------------------------------------------------
 */
-Route::prefix('customer')
-    ->name('customer.')
-    ->group(function () {
-        Route::get('/home', [PageController::class, 'home'])->name('home');
-        Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
-        Route::get('/cart', [PageController::class, 'cart'])->name('cart');
-        Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
-        Route::get('/guide', [PageController::class, 'guide'])->name('guide');
-        Route::get('/account', [PageController::class, 'account'])->name('account');
-        Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
-    });
+
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/products', [PageController::class, 'products'])->name('products');
+Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+Route::get('/guide', [PageController::class, 'guide'])->name('guide');
+Route::get('/account', [PageController::class, 'account'])->name('account');
+Route::get('/product/{id}', [PageController::class, 'productDetail'])->name('product.detail');
+Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])
+    ->middleware('auth')
+    ->name('cart.add');

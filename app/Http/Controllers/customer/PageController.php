@@ -72,19 +72,23 @@ class PageController extends Controller
         return view('customer.how_to_order');
     }
 
-// ✅ [TAMBAHAN HANIF] — Method untuk halaman detail produk
+    // ✅ [TAMBAHAN HANIF] — Method untuk halaman detail produk
     public function productDetail($id)
     {
         // Ambil data produk berdasarkan ID
         $product = Product::findOrFail($id);
 
         // Ambil produk lain untuk rekomendasi (opsional)
-        $relatedProducts = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $id)
-            ->take(4)
-            ->get();
+        $relatedProducts = Product::where('category_id', $product->category_id)->where('id', '!=', $id)->take(4)->get();
 
         // Kirim ke view customer/product-detail.blade.php
         return view('customer.product-detail', compact('product', 'relatedProducts'));
+    }
+
+    public function cart()
+    {
+        $user = Auth::user();
+        $cartItems = CartItem::with('product')->where('user_id', $user->id)->get();
+        return view('customer.cart', compact('cartItems'));
     }
 }
