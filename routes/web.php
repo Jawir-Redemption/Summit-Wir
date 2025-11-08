@@ -53,6 +53,7 @@ Route::prefix('admin')
         Route::resource('orders', OrderController::class)->except(['destroy']);
         Route::put('orders/{order}/status', [OrderController::class, 'update'])->name('orders.update');
         Route::resource('users', UserController::class)->except(['create', 'store']);
+        Route::resource('categories', CategoryController::class)->except(['show']);
     });
 
 /*
@@ -61,9 +62,13 @@ Route::prefix('admin')
 |--------------------------------------------------------------------------
 */
 
-
-Route::get('/home', [PageController::class, 'home'])->name('home');
-Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
-Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
-Route::post('/cart/add/{id}', [PageController::class, 'addToCart'])->name('cart.add');
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/products', [PageController::class, 'products'])->name('products');
+Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
 Route::get('/guide', [PageController::class, 'guide'])->name('guide');
+Route::get('/account', [PageController::class, 'account'])->name('account');
+Route::get('/product/{id}', [PageController::class, 'productDetail'])->name('product.detail');
+Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])
+    ->middleware('auth')
+    ->name('cart.add');

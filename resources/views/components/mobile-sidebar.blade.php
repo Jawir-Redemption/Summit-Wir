@@ -55,6 +55,26 @@
                 </a>
             </li>
 
+            {{-- Categories --}}
+            <li class="relative px-6 py-3">
+                @if (request()->routeIs('admin.categories.*'))
+                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                        aria-hidden="true"></span>
+                @endif
+                <a href="{{ route('admin.categories.index') }}"
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150
+                        {{ request()->routeIs('admin.categories.*') ? 'text-gray-800 dark:text-gray-100' : 'text-gray-500 hover:text-gray-800 dark:hover:text-gray-200' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                    </svg>
+
+                    <span class="ml-4">Kategori Produk</span>
+                </a>
+            </li>
+
             {{-- Products --}}
             <li class="relative px-6 py-3">
                 @if (request()->routeIs('admin.products.*'))
