@@ -53,6 +53,7 @@ Route::prefix('admin')
         Route::resource('orders', OrderController::class)->except(['destroy']);
         Route::put('orders/{order}/status', [OrderController::class, 'update'])->name('orders.update');
         Route::resource('users', UserController::class)->except(['create', 'store']);
+        Route::resource('categories', CategoryController::class)->except(['show']);
     });
 
 /*
@@ -60,19 +61,14 @@ Route::prefix('admin')
 | Customer Routes
 |--------------------------------------------------------------------------
 */
-//Route::get('/home', [PageController::class, 'home'])->name('home'); 
-//Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products'); 
-//Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail'); 
-//Route::post('/cart/add/{id}', [PageController::class, 'addToCart'])->name('cart.add'); 
-//Route::get('/guide', [PageController::class, 'guide'])->name('guide');
-
-//ini route yang bener ya cug
-Route::prefix('customer')->name('customer.')->group(function () {
-    Route::get('/home', [PageController::class, 'home'])->name('home');
-    Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
-    Route::get('/cart', [PageController::class, 'cart'])->name('cart');
-    Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
-    Route::get('/guide', [PageController::class, 'guide'])->name('guide');
-    Route::get('/account', [PageController::class, 'account'])->name('account');
-    Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
-});
+Route::prefix('customer')
+    ->name('customer.')
+    ->group(function () {
+        Route::get('/home', [PageController::class, 'home'])->name('home');
+        Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
+        Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+        Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+        Route::get('/guide', [PageController::class, 'guide'])->name('guide');
+        Route::get('/account', [PageController::class, 'account'])->name('account');
+        Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
+    });
