@@ -45,21 +45,20 @@ class LoginController extends Controller
 
             $user = Auth::user();
 
-            // 🔥 Arahkan sesuai role
+            // Arahkan sesuai role
             if ($user->role === 'admin') {
-                return redirect()->route('admin.index')
-                    ->with('success', 'Selamat datang, Admin!');
+                return redirect()->route('admin.index')->with('success', 'Selamat datang, Admin!');
             } else {
-                return redirect()->route('customer.home')
-                    ->with('success', 'Login berhasil!');
+                return redirect()->route('customer.home')->with('success', 'Login berhasil!');
             }
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->onlyInput('email');
+        return back()
+            ->withErrors([
+                'email' => 'Email atau password salah.',
+            ])
+            ->onlyInput('email');
     }
-
 
     public function logout(Request $request)
     {
