@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('image')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
