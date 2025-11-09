@@ -68,7 +68,7 @@
 
             {{-- Action Buttons --}}
             <div class="flex gap-3">
-                <form action="{{ route('checkout.pay', $order->id) }}" method="POST">
+                <form action="{{ route('payment.pay', $order->id) }}" method="POST">
                     @csrf
                     <button type="submit" class="px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
                         Konfirmasi & Lanjut ke Pembayaran

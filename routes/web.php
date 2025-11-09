@@ -7,17 +7,20 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
 
 // ==================== ADMIN ====================
+use App\Http\Controllers\customer\CartController;
+use App\Http\Controllers\customer\PageController;
 use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\ProductController as AdminProductController;
-use App\Http\Controllers\admin\OrderController as AdminOrderController;
-use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
-use App\Http\Controllers\admin\UserController as AdminUserController;
+use App\Http\Controllers\customer\PaymentController;
+use App\Http\Controllers\customer\ProfileController;
 
 // ==================== CUSTOMER ====================
-use App\Http\Controllers\customer\PageController;
-use App\Http\Controllers\customer\ProductController as CustomerProductController;
-use App\Http\Controllers\customer\CartController;
 use App\Http\Controllers\customer\CheckoutController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\admin\UserController as AdminUserController;
+use App\Http\Controllers\admin\OrderController as AdminOrderController;
+use App\Http\Controllers\admin\ProductController as AdminProductController;
+use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\customer\ProductController as CustomerProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,19 +69,26 @@ Route::prefix('admin')
 */
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/guide', [PageController::class, 'guide'])->name('guide');
-Route::get('/account', [PageController::class, 'account'])->name('account');
 
 Route::get('/products', [CustomerProductController::class, 'index'])->name('products');
 Route::get('/product/{id}', [CustomerProductController::class, 'show'])->name('product.detail');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::patch('/cart/update/{cart}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/delete/{cart}', [CartController::class, 'deleteFromCart'])->name('cart.delete');
 
     Route::get('/checkout/{order}', [CheckoutController::class, 'index'])->name('checkout');
-    Route::post('/checkout/pay/{order}', [CheckoutController::class, 'pay'])->name('checkout.pay');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::delete('/checkout/cancel/{order}', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+    Route::post('/payment/pay/{order}', [PaymentController::class, 'pay'])->name('payment.pay');
+    Route::get('/payment/status/{order}', [PaymentController::class, 'status'])->name('payment.status');
 });
+
+Route::post('/payment/notification', [PaymentController::class, 'notificationHandler'])->withoutMiddleware([
+    VerifyCsrfToken::class,
+]);

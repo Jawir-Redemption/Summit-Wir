@@ -26,7 +26,7 @@
                 </svg>
             </a>
 
-            <a href="{{ route('account') }}" class="text-white hover:text-green-400 transition" title="Akun">
+            <a href="{{ route('profile.index') }}" class="text-white hover:text-green-400 transition" title="Akun">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -70,7 +70,8 @@
             <li><a href="{{ route('products') }}" class="block py-2 hover:text-green-600 transition">Products</a></li>
             <li><a href="{{ route('guide') }}" class="block py-2 hover:text-green-600 transition">Guide</a></li>
             <li><a href="{{ route('cart') }}" class="block py-2 hover:text-green-600 transition">Cart</a></li>
-            <li><a href="{{ route('account') }}" class="block py-2 hover:text-green-600 transition">Account</a></li>
+            <li><a href="{{ route('profile.index') }}" class="block py-2 hover:text-green-600 transition">Profile</a>
+            </li>
         </ul>
     </div>
 </nav>
