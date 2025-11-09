@@ -62,15 +62,13 @@
                                 </a>
 
                                 {{-- Tombol tambah ke keranjang --}}
-                                @auth
-                                    <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST">
-                                        @csrf
-                                        <button type="submit"
-                                            class="text-sm text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white px-3 py-1.5 rounded-lg transition">
-                                            + Keranjang
-                                        </button>
-                                    </form>
-                                @endauth
+                                <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="text-sm text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white px-3 py-1.5 rounded-lg transition">
+                                        + Keranjang
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

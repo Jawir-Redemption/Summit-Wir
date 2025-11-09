@@ -9,11 +9,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class PageController extends Controller
+class ProductController extends Controller
 {
-    public function home(Request $request)
+    public function index(Request $request)
     {
-        // Ambil semua kategori
         $categories = Category::all();
 
         $query = Product::query();
@@ -26,10 +25,8 @@ class PageController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        // Query produk (urutkan berdasarkan produk terbaru)
-        $products = $query->orderBy('created_at', 'desc')->take(12)->get();
+        $products = $query->get();
 
-        // Data keranjang (jika user login)
         $cartItems = [];
 
         if (Auth::check()) {
@@ -37,23 +34,18 @@ class PageController extends Controller
             $cartItems = CartItem::with('product')->where('user_id', $user->id)->get();
         }
 
-        // Kirim data ke view
-        return view('customer.home', compact('categories', 'products', 'cartItems'));
+        return view('customer.products', compact('categories', 'products', 'cartItems'));
     }
 
-    public function howToOrder()
+    public function show($id)
     {
-        return view('customer.how_to_order');
-    }
+        // Ambil data produk berdasarkan ID
+        $product = Product::findOrFail($id);
 
-    public function guide()
-    {
-        return view('customer.guide');
-    }
+        // Ambil produk lain untuk rekomendasi (opsional)
+        $relatedProducts = Product::where('category_id', $product->category_id)->where('id', '!=', $id)->take(4)->get();
 
-    public function account()
-    {
-        $user = Auth::user();
-        return view('customer.account', compact('user'));
+        // Kirim ke view customer/product-detail.blade.php
+        return view('customer.product-detail', compact('product', 'relatedProducts'));
     }
 }
