@@ -50,10 +50,4 @@ class PageController extends Controller
     {
         return view('customer.guide');
     }
-
-    public function account()
-    {
-        $user = Auth::user();
-        return view('customer.account', compact('user'));
-    }
 }
