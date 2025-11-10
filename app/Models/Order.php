@@ -7,16 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = [
-        'user_id',
-        'orderDetail_id',
-        'loan_date',
-        'return_date',
-        'duration',
-        'status',
-        'total_price',
-        'total_fine',
-    ];
+    protected $fillable = ['user_id', 'loan_date', 'return_date', 'duration', 'status', 'total_price', 'total_fine'];
+
+    protected $dates = ['loan_date', 'return_date'];
 
     protected $appends = ['displayStatus'];
 
@@ -41,7 +34,7 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
     public function orderDetails()

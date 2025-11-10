@@ -4,30 +4,6 @@
     <div class="container px-6 mx-auto grid">
         <section class="section">
             <div class="section-body">
-                @if (session('error'))
-                    <div class="mt-3 p-3 text-sm text-red-700 bg-red-100 rounded-lg">
-                        {{ session('error') }}
-                    </div>
-                @endif
-
-                @error('name')
-                    <p>{{ $message }}</p>
-                @enderror
-                @error('description')
-                    <p>{{ $message }}</p>
-                @enderror
-                @error('price')
-                    <p>{{ $message }}</p>
-                @enderror
-                @error('stock')
-                    <p>{{ $message }}</p>
-                @enderror
-                @error('category_id')
-                    <p>{{ $message }}</p>
-                @enderror
-                @error('image')
-                    <p>{{ $message }}</p>
-                @enderror
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Tambah Produk
                 </h2>
@@ -53,12 +29,13 @@
                                 class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700
                                        form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple
                                        dark:focus:shadow-outline-gray">
-                                <option value="">--- Pilih Kategori ---</option>
-                                <option value="1">Tents</option>
-                                <option value="2">Backpack</option>
-                                <option value="3">Cooking gear</option>
-                                <option value="4">Clothing</option>
-                                <option value="5">Lighting</option>
+                                <option value="" selected disabled>Pilih Kategori</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->category }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('category_id')
                                 <p class="mt-1 text-xs text-red-600">{{ $message }}</p>

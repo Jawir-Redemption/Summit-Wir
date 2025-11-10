@@ -1,14 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\UserController;
+
+// ==================== AUTH ====================
 use App\Http\Controllers\auth\LoginController;
-use App\Http\Controllers\admin\OrderController;
-use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\auth\RegisterController;
-use App\Http\Controllers\admin\CategoryController;
+
+// ==================== ADMIN ====================
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\ProductController as AdminProductController;
+use App\Http\Controllers\admin\OrderController as AdminOrderController;
+use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\admin\UserController as AdminUserController;
+
+// ==================== CUSTOMER ====================
 use App\Http\Controllers\customer\PageController;
+use App\Http\Controllers\customer\ProductController as CustomerProductController;
 use App\Http\Controllers\customer\CartController;
 use App\Http\Controllers\customer\CheckoutController;
 
@@ -17,42 +24,39 @@ use App\Http\Controllers\customer\CheckoutController;
 | Authentication Routes
 |--------------------------------------------------------------------------
 */
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'authenticate')->name('login.post');
+    Route::post('/logout', 'logout')->name('logout');
+});
 
-// Login & Logout
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-// Register
-Route::get('/register', [RegisterController::class, 'register'])->name('register');
-Route::post('/register', [RegisterController::class, 'handleRegister'])->name('register.post');
-
-// Email Verification
-Route::get('/email/verify', [RegisterController::class, 'verification'])
-    ->middleware('auth')
-    ->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', [RegisterController::class, 'verify'])
-    ->middleware(['auth', 'signed'])
-    ->name('verification.verify');
-Route::post('/email/verification-notification', [RegisterController::class, 'resendVerification'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register', 'handleRegister')->name('register.post');
+    Route::get('/email/verify', 'verification')->middleware('auth')->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', 'verify')
+        ->middleware(['auth', 'signed'])
+        ->name('verification.verify');
+    Route::post('/email/verification-notification', 'resendVerification')
+        ->middleware(['auth', 'throttle:6,1'])
+        ->name('verification.send');
+});
 
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
 |--------------------------------------------------------------------------
 */
-
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', 'is_admin'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
-        Route::resource('products', ProductController::class);
-        Route::resource('orders', OrderController::class)->except(['destroy']);
-        Route::put('orders/{order}/status', [OrderController::class, 'update'])->name('orders.update');
-        Route::resource('users', UserController::class)->except(['create', 'store']);
+        Route::resource('products', AdminProductController::class);
+        Route::resource('orders', AdminOrderController::class)->except(['destroy']);
+        Route::put('orders/{order}/status', [AdminOrderController::class, 'update'])->name('orders.update');
+        Route::resource('users', AdminUserController::class)->except(['create', 'store']);
+        Route::resource('categories', AdminCategoryController::class)->except(['show']);
     });
 
 /*
@@ -60,10 +64,21 @@ Route::prefix('admin')
 | Customer Routes
 |--------------------------------------------------------------------------
 */
-
-
-Route::get('/home', [PageController::class, 'home'])->name('home');
-Route::get('/all-products', [PageController::class, 'allProducts'])->name('all-products');
-Route::get('/product-detail/{id}', [PageController::class, 'productDetail'])->name('product-detail');
-Route::post('/cart/add/{id}', [PageController::class, 'addToCart'])->name('cart.add');
+Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/guide', [PageController::class, 'guide'])->name('guide');
+Route::get('/account', [PageController::class, 'account'])->name('account');
+
+Route::get('/products', [CustomerProductController::class, 'index'])->name('products');
+Route::get('/product/{id}', [CustomerProductController::class, 'show'])->name('product.detail');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::patch('/cart/update/{cart}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/delete/{cart}', [CartController::class, 'deleteFromCart'])->name('cart.delete');
+
+    Route::get('/checkout/{order}', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout/pay/{order}', [CheckoutController::class, 'pay'])->name('checkout.pay');
+    Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+    Route::delete('/checkout/cancel/{order}', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+});

@@ -62,6 +62,13 @@ class OrderController extends Controller
         $order->status = $validated['status'];
         $order->save();
 
+        if ($validated['status'] === 'on_rent') {
+            $order->loan_date = now();
+            $order->return_date = now()->addDays($order->duration);
+            $order->save();
+            return redirect()->route('admin.orders.show', $order->id);
+        }
+
         // Jika status jadi completed, update stock/sold produk
         if ($validated['status'] === 'completed') {
             $order->orderDetails->each(function ($detail) {

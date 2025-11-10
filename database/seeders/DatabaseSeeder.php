@@ -106,7 +106,6 @@ class DatabaseSeeder extends Seeder
                         'order_id' => $order->id,
                         'product_id' => $product->id,
                         'quantity' => $qty,
-                        'unit_price' => $unitPrice,
                     ]);
                 }
 
@@ -138,7 +137,6 @@ class DatabaseSeeder extends Seeder
             'order_id' => $overdueOrder->id,
             'product_id' => $product->id,
             'quantity' => $qty,
-            'unit_price' => $product->price,
         ]);
 
         $overdueOrder->update(['total_price' => $subtotal]);

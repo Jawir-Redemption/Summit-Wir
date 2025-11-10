@@ -35,7 +35,7 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('customer.home')->with('success', 'Registrasi berhasil!');
+        return redirect()->route('home')->with('success', 'Registrasi berhasil!');
     }
 
     public function verification()
