@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->dateTime('loan_date');
-            $table->dateTime('return_date');
+            $table->dateTime('loan_date')->nullable();
+            $table->dateTime('return_date')->nullable();
             $table->integer('duration');
             $table->bigInteger('total_price')->unsigned();
             $table->bigInteger('total_fine')->unsigned()->nullable();

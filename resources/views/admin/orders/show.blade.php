@@ -94,10 +94,10 @@
                                         {{ $item->quantity }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        {{ 'Rp.' . number_format($item->unit_price, 0, ',', '.') }}
+                                        {{ 'Rp.' . number_format($item->product->price, 0, ',', '.') }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        {{ 'Rp.' . number_format($item->quantity * $item->unit_price, 0, ',', '.') }}
+                                        {{ 'Rp.' . number_format($item->quantity * $item->product->price, 0, ',', '.') }}
                                     </td>
                                 </tr>
                             @endforeach
