@@ -49,19 +49,30 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'required|string|min:8|confirmed',
-            'no_hp' => 'nullable|string|max:15',
-            'ktp_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'role' => 'required|in:admin,user',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+            'password' => 'nullable|string|min:8',
+            'ktp_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        if ($request->hasFile('ktp_image')) {
-            $path = $request->file('ktp_image')->store('ktp_images', 'public');
-            $validated['ktp_image'] = $path;
+        // Ganti password jika diisi
+        if (!empty($validated['password'])) {
+            $validated['password'] = bcrypt($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
+
+        // Upload KTP baru jika ada
+        if ($request->hasFile('ktp_photo')) {
+            $file = $request->file('ktp_photo');
+            $filename = 'ktp_' . $user->id . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/ktp', $filename);
+            $validated['ktp_photo'] = 'ktp/' . $filename;
         }
 
         $user->update($validated);
+
+        return redirect()->route('admin.users.show', $user->id)->with('success', 'Data pengguna berhasil diperbarui.');
     }
 
     /**

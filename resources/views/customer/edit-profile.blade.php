@@ -9,7 +9,7 @@
                 Edit Profil
             </h1>
 
-            <form action="{{ route('profile.update') }}" method="POST" class="space-y-6">
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 @method('PUT')
 
@@ -29,6 +29,38 @@
                     <input type="email" id="email" name="email" value="{{ $user->email }}" readonly
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-100 text-gray-500 cursor-not-allowed">
                     <p class="text-sm text-gray-400 mt-1">Email tidak dapat diubah.</p>
+                </div>
+
+                {{-- Nomor HP --}}
+                <div>
+                    <label for="no_hp" class="block text-gray-600 font-medium mb-2">Nomor HP</label>
+                    <input type="text" id="no_hp" name="no_hp" value="{{ old('no_hp', $user->no_hp ?? '') }}"
+                        placeholder="Contoh: 081234567890"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                    @error('no_hp')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Foto KTP --}}
+                <div>
+                    <label for="ktp_image" class="block text-gray-600 font-medium mb-2">Foto KTP</label>
+
+                    @if ($user->ktp_image)
+                        <div class="mb-3">
+                            <img src="{{ asset('storage/' . $user->ktp_image) }}" alt="Foto KTP"
+                                class="w-48 rounded-lg border border-gray-200 shadow-sm">
+                            <p class="text-sm text-gray-500 mt-1">Foto KTP saat ini</p>
+                        </div>
+                    @endif
+
+                    <input type="file" id="ktp_image" name="ktp_image" accept="image/*"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                    <p class="text-sm text-gray-400 mt-1">Unggah foto KTP dalam format JPG, PNG, atau JPEG (maks 2MB)</p>
+
+                    @error('ktp_image')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 {{-- Password Lama --}}
@@ -67,7 +99,8 @@
 
                 {{-- Tombol --}}
                 <div class="pt-8 flex items-center justify-between">
-                    <a href="{{ route('profile.index') }}" class="text-gray-500 hover:text-gray-700 transition font-medium">
+                    <a href="{{ route('profile.index') }}"
+                        class="text-gray-500 hover:text-gray-700 transition font-medium">
                         ← Kembali ke Profil
                     </a>
 
