@@ -56,7 +56,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::resource('products', AdminProductController::class);
-        Route::resource('orders', AdminOrderController::class)->except(['destroy', 'edit']);
+        Route::resource('orders', AdminOrderController::class)->except(['destroy', 'edit', 'update']);
         Route::put('orders/{order}/status', [AdminOrderController::class, 'update'])->name('orders.update');
         Route::resource('users', AdminUserController::class)->except(['create', 'store']);
         Route::resource('categories', AdminCategoryController::class)->except(['show']);
