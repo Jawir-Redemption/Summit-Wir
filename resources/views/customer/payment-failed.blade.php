@@ -15,8 +15,8 @@
             <div class="bg-gray-100 p-6 rounded-xl mb-6">
                 <p class="text-gray-700 font-medium">Nomor Pesanan:</p>
                 <p class="text-gray-900 font-bold text-lg">{{ $order->id }}</p>
-                <p class="text-gray-700 mt-2">Jumlah yang harus dibayar: <span class="font-bold">Rp
-                        {{ number_format($order->total_price, 0, ',', '.') }}</span></p>
+                <p class="text-gray-700 mt-2">Jumlah DP yang harus dibayar: <span class="font-bold">Rp
+                        {{ number_format($order->total_price * 0.5, 0, ',', '.') }}</span></p>
             </div>
 
             <a href="{{ route('checkout', $order) }}"

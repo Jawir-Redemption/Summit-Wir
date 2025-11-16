@@ -47,9 +47,9 @@ class LoginController extends Controller
 
             // Arahkan sesuai role
             if ($user->role === 'admin') {
-                return redirect()->route('admin.index')->with('success', 'Selamat datang, Admin!');
+                return redirect()->intended('/admin');
             } else {
-                return redirect()->route('home')->with('success', 'Login berhasil!');
+                return redirect()->intended('/');
             }
         }
 

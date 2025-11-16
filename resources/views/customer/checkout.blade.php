@@ -51,11 +51,11 @@
             <div class="mb-6">
                 <h2 class="text-lg font-semibold mb-2">Ringkasan Biaya</h2>
                 @php
-                    $dp = $order->total_price * 0.2;
+                    $dp = $order->total_price * 0.5;
                 @endphp
                 <p class="text-gray-600">Total Harga:</p>
-                <p class="font-bold text-xl">Rp{{ number_format($order->total_price, 0, ',', '.') }}</p>
-                <p class="text-sm text-gray-500">DP (20%): Rp{{ number_format($dp, 0, ',', '.') }}</p>
+                <p class="text-sm text-gray-500">Rp{{ number_format($order->total_price, 0, ',', '.') }}</p>
+                <p class="font-bold text-xl ">DP (50%): Rp{{ number_format($dp, 0, ',', '.') }}</p>
             </div>
 
             {{-- Customer Info --}}
@@ -64,6 +64,8 @@
                 <p><strong>Nama:</strong> {{ $order->user->name }}</p>
                 <p><strong>Email:</strong> {{ $order->user->email }}</p>
                 <p><strong>Tempat Pengambilan:</strong> Kantor Summit Wirr (Telkom University Purwokerto)</p>
+                <p><strong>Note:</strong> Lakukan sisa pembayaran sebesar
+                    Rp{{ number_format($order->total_price - $dp, 0, ',', '.') }} saat pengambilan barang.</p>
             </div>
 
             {{-- Action Buttons --}}

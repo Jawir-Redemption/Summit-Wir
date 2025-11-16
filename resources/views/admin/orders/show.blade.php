@@ -106,6 +106,8 @@
                     </table>
                 </div>
                 <div class="mt-6 mr-auto text-right space-y-1">
+                    <p class="text-sm text-gray-700 dark:text-gray-300">DP 50%:
+                        {{ 'Rp.' . number_format($order->total_price * 0.5, 0, ',', '.') }}</p>
                     <p class="text-sm text-gray-700 dark:text-gray-300">Denda:
                         {{ 'Rp.' . number_format($order->total_fine, 0, ',', '.') }}</p>
                     <p class="text-xl font-semibold text-gray-800 dark:text-gray-100">Total:

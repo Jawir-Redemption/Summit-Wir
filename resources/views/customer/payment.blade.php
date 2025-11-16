@@ -5,7 +5,7 @@
 @section('content')
     <section class="max-w-3xl mx-auto px-6 py-12 text-center">
         <h1 class="text-2xl font-bold mb-6">Pembayaran Pesanan #{{ $order->id }}</h1>
-        <p class="text-lg mb-4">Total: <strong>Rp {{ number_format($order->total_price, 0, ',', '.') }}</strong></p>
+        <p class="text-lg mb-4">Total: <strong>Rp {{ number_format($order->total_price * 0.5, 0, ',', '.') }}</strong></p>
 
         <button id="pay-button" class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
             Bayar Sekarang

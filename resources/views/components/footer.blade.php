@@ -35,20 +35,13 @@
         <div class="w-1/4">
             <h6 class="text-gray-900 font-semibold mb-4">Hubungi Kami</h6>
             <ul class="space-y-2 text-sm">
-                <li><i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>Jl. Petualang No. 123, Jakarta</li>
+                <li><i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>Kantor Summit Wir, Telkom University
+                    Purwokerto</li>
                 <li><i class="fas fa-phone mr-2 text-blue-500"></i>(021) 555-1234</li>
                 <li><i class="fas fa-envelope mr-2 text-blue-500"></i>summitwir@example.com</li>
             </ul>
 
-            <div class="mt-4">
-                <h6 class="text-gray-900 font-semibold mb-2">Metode Pembayaran</h6>
-                <div class="flex space-x-2">
-                    <img src="{{ asset('assets/img/payments/visa.png') }}" alt="Visa" class="h-6">
-                    <img src="{{ asset('assets/img/payments/mastercard.png') }}" alt="Mastercard" class="h-6">
-                    <img src="{{ asset('assets/img/payments/paypal.png') }}" alt="PayPal" class="h-6">
-                    <img src="{{ asset('assets/img/payments/gopay.png') }}" alt="GoPay" class="h-6">
-                </div>
-            </div>
+
         </div>
     </div>
 

@@ -36,7 +36,7 @@ class PaymentController extends Controller
         $params = [
             'transaction_details' => [
                 'order_id' => $orderId,
-                'gross_amount' => $order->total_price,
+                'gross_amount' => $order->total_price * 0.5,
             ],
             'customer_details' => [
                 'first_name' => $user->name,
