@@ -1,5 +1,6 @@
-<nav id="navbar"
-    class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-md transition-all duration-500">
+<nav id="navbar"class="fixed top-0 left-0 w-full z-50 transition-all duration-500
+     {{ request()->routeIs('home') ? 'bg-transparent' : 'bg-white shadow-md' }}">
+
     <div class="container mx-auto flex items-center justify-between py-4 px-6">
 
         {{-- Logo kiri --}}
@@ -10,12 +11,9 @@
 
         {{-- Menu tengah --}}
         <ul class="hidden md:flex space-x-8 font-medium absolute left-1/2 transform -translate-x-1/2">
-            <li><a href="{{ route('home') }}" class="nav-link text-gray-800 hover:text-blue-600 transition">Home</a>
-            </li>
-            <li><a href="{{ route('products') }}"
-                    class="nav-link text-gray-800 hover:text-blue-600 transition">Products</a></li>
-            <li><a href="{{ route('guide') }}" class="nav-link text-gray-800 hover:text-blue-600 transition">Guide</a>
-            </li>
+            <li><a href="{{ route('home') }}" class="nav-link transition{{ request()->routeIs('home') ? 'text-white hover:text-green-400' : 'text-gray-800 hover:text-green-600' }}">Home</a></li>
+            <li><a href="{{ route('products') }}" class="nav-link transition{{ request()->routeIs('home') ? 'text-white hover:text-green-400' : 'text-gray-800 hover:text-green-600' }}">Products</a></li>  
+            <li><a href="{{ route('guide') }}" class="nav-link transition{{ request()->routeIs('home') ? 'text-white hover:text-green-400' : 'text-gray-800 hover:text-green-600' }}">Guide</a></li>
         </ul>
 
         {{-- Bagian kanan: Cart & Account --}}
@@ -78,19 +76,37 @@
     </div>
 </nav>
 
+{{-- Script scroll & mobile menu (tetap sama seperti punyamu) --}}
+@if (request()->routeIs('home'))
+<script>
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navBrand = document.getElementById('nav-brand');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.remove('bg-transparent');
+            navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-md');
+            navLinks.forEach(link => {
+                link.classList.remove('text-white', 'hover:text-green-400');
+                link.classList.add('text-gray-800', 'hover:text-green-600');
+            });
+            navBrand.classList.remove('text-white');
+            navBrand.classList.add('text-gray-900');
+        } else {
+            navbar.classList.add('bg-transparent');
+            navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-md');
+            navLinks.forEach(link => {
+                link.classList.add('text-white', 'hover:text-green-400');
+                link.classList.remove('text-gray-800', 'hover:text-green-600');
+            });
+            navBrand.classList.add('text-white');
+            navBrand.classList.remove('text-gray-900');
+        }
+    });
+</script>
+@endif
+
 @if (!request()->is('customer/home') && !request()->is('home'))
     <div class="h-16"></div>
 @endif
-
-<script>
-    // === Fungsi untuk toggle menu mobile ===
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuToggle.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.contains('open');
-        mobileMenu.style.maxHeight = isOpen ? '0' : '400px';
-        mobileMenu.style.opacity = isOpen ? '0' : '1';
-        mobileMenu.classList.toggle('open');
-    });
-</script>
