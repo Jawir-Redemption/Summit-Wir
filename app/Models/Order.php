@@ -21,7 +21,7 @@ class Order extends Model
         }
 
         // Compute due date
-        $dueDate = Carbon::parse($this->loan_date)->addDays($this->duration);
+        $dueDate = Carbon::parse($this->loan_date)->addDays((int) $this->duration);
 
         // Check if overdue
         if (now()->greaterThan($dueDate)) {
