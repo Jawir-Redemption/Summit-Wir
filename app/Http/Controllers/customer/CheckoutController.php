@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\customer;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
 
         // Prevent users from accessing others' orders
-        if ($order->user_id !== $user->id) {
+        if ($order->user_id != $user->id) {
             return redirect()->route('cart')->with('error', 'Akses ditolak.');
         }
 
@@ -77,33 +77,11 @@ class CheckoutController extends Controller
         return redirect()->route('checkout', ['order' => $order->id]);
     }
 
-    /**
-     * Handle payment action (Midtrans or manual)
-     */
-    public function pay(Order $order, Request $request)
-    {
-        $user = Auth::user();
-
-        if ($order->user_id !== $user->id) {
-            return redirect()->route('cart')->with('error', 'Akses ditolak.');
-        }
-
-        if ($order->status !== 'pending') {
-            return redirect()
-                ->route('checkout', ['order' => $order->id])
-                ->with('error', 'Pesanan ini sudah diproses atau dibatalkan.');
-        }
-
-        // 🧾 Example: Redirect to Midtrans Snap page (placeholder)
-        // You’ll later replace this with SnapToken generation
-        return redirect()->route('payment.start', ['order' => $order->id]);
-    }
-
     public function cancel(Order $order)
     {
         $user = Auth::user();
 
-        if ($order->user_id !== $user->id) {
+        if ($order->user_id != $user->id) {
             return redirect()->route('cart')->with('error', 'Akses ditolak.');
         }
 

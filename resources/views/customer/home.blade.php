@@ -4,23 +4,26 @@
 
 @section('content')
     {{-- HERO SECTION --}}
-    <section id="hero" class="relative bg-cover bg-center bg-no-repeat h-[80vh]"
-        style="background-image: url('{{ asset('assets/img/bg-tent.jpg') }}');">
+    <section id="hero" 
+    class="relative bg-cover bg-center bg-no-repeat h-[80vh] -mt-[80px]"
+    style="background-image: url('{{ asset('assets/img/bg-tent.jpg') }}');">
 
-        <div class="absolute inset-0 bg-black/50"></div>
+    <div class="absolute inset-0 bg-black/50"></div>
 
-        <div class="relative z-10 max-w-6xl mx-auto h-full flex flex-col justify-center px-6 text-white">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-                Siap Naik Gunung? <br>
-                Sewa Perlengkapan Outdoor Terbaik di <span class="text-blue-400">SummitWirr</span>
-            </h1>
+    <div class="relative z-10 max-w-6xl mx-auto h-full flex flex-col justify-center px-6 text-white pt-[80px]">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+            Siap Naik Gunung? <br>
+            Sewa Perlengkapan Outdoor Terbaik di 
+            <span class="text-blue-400">SummitWirr</span>
+        </h1>
 
-            <p class="text-lg md:text-xl mb-6 text-gray-200 max-w-2xl">
-                Nikmati pengalaman mendaki dan berkemah tanpa repot membeli alat baru.
-                Cukup sewa, nikmati, dan jelajahi alam dengan mudah!
-            </p>
+        <p class="text-lg md:text-xl mb-6 text-gray-200 max-w-2xl">
+            Nikmati pengalaman mendaki dan berkemah tanpa repot membeli alat baru.
+            Cukup sewa, nikmati, dan jelajahi alam dengan mudah!
+        </p>
 
-            <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-4">
+
                 {{-- Tombol ke semua produk --}}
                 <a href="{{ route('products') }}"
                     class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium shadow-md transition">

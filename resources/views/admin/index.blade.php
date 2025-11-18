@@ -195,13 +195,61 @@
                 Grafik Pendapatan Bulanan
             </h4>
             <canvas id="line"></canvas>
-            <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                <!-- Chart legend -->
-                <div class="flex items-center">
-                    <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                    <span>Pemasukkan</span>
-                </div>
-            </div>
         </div>
     </div>
+    {{-- Chart.js --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labels = @json($labels);
+        const dataValues = @json($data);
+
+        const lineConfig = {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Pendapatan (Rp)',
+                    backgroundColor: '#0694a2',
+                    borderColor: '#0694a2',
+                    data: dataValues,
+                    fill: false,
+                    tension: 0.3,
+                }, ],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Bulan'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Jumlah Transaksi'
+                        },
+                        ticks: {
+                            precision: 0
+                        }
+                    },
+                },
+            },
+        };
+
+        const ctx = document.getElementById('line').getContext('2d');
+        new Chart(ctx, lineConfig);
+    </script>
 @endsection

@@ -58,6 +58,9 @@
                                             <option value="pending" style="color: orange;"
                                                 {{ $order->display_status == 'pending' ? 'selected' : '' }}>
                                                 Pending</option>
+                                            <option value="paid" style="color: orange;"
+                                                {{ $order->display_status == 'paid' ? 'selected' : '' }}>
+                                                Sudah Dibayar</option>
                                             <option value="on_rent" {{ $order->status == 'on_rent' ? 'selected' : '' }}>
                                                 Dalam Penyewaan</option>
                                             <option value="overdue" {{ $order->status == 'overdue' ? 'selected' : '' }}>

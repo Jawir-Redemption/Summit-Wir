@@ -24,6 +24,7 @@
                             <th class="px-4 py-3">Deskripsi</th>
                             <th class="px-4 py-3">Harga</th>
                             <th class="px-4 py-3">Stok</th>
+                            <th class="px-4 py-3">Kategori</th>
                             <th class="px-4 py-3">Gambar</th>
                             <th class="px-4 py-3">Aksi</th>
                         </tr>
@@ -45,6 +46,9 @@
                                 </td>
                                 <td class="px-4 py-3 text-xs">
                                     {{ $product->stock }}
+                                </td>
+                                <td class="px-4 py-3 text-xs">
+                                    {{ $product->category->category }}
                                 </td>
                                 <td class="px-4 py-3 text-xs">
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"

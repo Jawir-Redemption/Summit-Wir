@@ -55,7 +55,7 @@ class OrderController extends Controller
     {
         // Validasi hanya untuk status
         $validated = $request->validate([
-            'status' => 'required|string|in:pending,on_rent,overdue,completed,cancelled',
+            'status' => 'required|string|in:pending,paid,on_rent,overdue,completed,cancelled,failed',
         ]);
 
         // Update status
