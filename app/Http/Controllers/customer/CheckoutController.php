@@ -17,7 +17,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
 
         // Prevent users from accessing others' orders
-        if ($order->user_id !== $user->id) {
+        if ($order->user_id != $user->id) {
             return redirect()->route('cart')->with('error', 'Akses ditolak.');
         }
 
@@ -81,7 +81,7 @@ class CheckoutController extends Controller
     {
         $user = Auth::user();
 
-        if ($order->user_id !== $user->id) {
+        if ($order->user_id != $user->id) {
             return redirect()->route('cart')->with('error', 'Akses ditolak.');
         }
 
