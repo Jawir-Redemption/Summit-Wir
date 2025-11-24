@@ -103,7 +103,7 @@
                 <input type="text" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div>
-                <label class="block text-sm text-gray-600">Nama Belakang</label>
+                <label class="block text-sm text-gray-600">Nomor Telepon</label>
                 <input type="text" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             </div>
@@ -112,10 +112,6 @@
             <div>
                 <label class="block text-sm text-gray-600">Email</label>
                 <input type="email" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div>
-                <label class="block text-sm text-gray-600">Nomor Telepon</label>
-                <input type="text" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             </div>
 
