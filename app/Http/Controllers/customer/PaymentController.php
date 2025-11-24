@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,7 +28,7 @@ class PaymentController extends Controller
         $user = Auth::user();
 
         // Ensure the order belongs to the authenticated user
-        if ($order->user_id !== $user->id) {
+        if ($order->user_id != $user->id) {
             abort(403, 'Unauthorized access');
         }
 
@@ -93,7 +93,7 @@ class PaymentController extends Controller
     public function status(Order $order)
     {
         $user = Auth::user();
-        if ($order->user_id !== $user->id) {
+        if ($order->user_id != $user->id) {
             abort(403, 'Unauthorized access');
         }
 

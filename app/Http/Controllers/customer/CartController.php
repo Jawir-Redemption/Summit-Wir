@@ -64,7 +64,7 @@ class CartController extends Controller
     public function deleteFromCart(CartItem $cart)
     {
         $user = Auth::user();
-        if ($cart->user_id !== $user->id) {
+        if ($cart->user_id != $user->id) {
             return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk menghapus item ini.');
         }
         $cart->delete();
