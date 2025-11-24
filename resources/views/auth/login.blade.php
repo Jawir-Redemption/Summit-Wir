@@ -9,7 +9,10 @@
     <div class="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 bg-white shadow-2xl rounded-3xl overflow-hidden">
 
         <!-- Side Shoe Image -->
-        <div class="bg-shoe-image bg-cover bg-center hidden md:block relative"></div>
+        <div class="hidden md:block bg-cover bg-center relative"
+     style="background-image: url('{{ asset('img/tenda.jpg') }}');">
+</div>
+
 
         <!-- Login Form -->
         <div class="p-10 sm:p-10 flex flex-col justify-center bg-white">

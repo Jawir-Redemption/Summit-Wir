@@ -198,7 +198,7 @@
         </div>
     </div>
     {{-- Chart.js --}}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/assets/js/chart.umd.min.js"></script>
     <script>
         const labels = @json($labels);
         const dataValues = @json($data);

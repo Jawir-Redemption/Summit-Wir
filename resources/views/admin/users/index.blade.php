@@ -79,7 +79,7 @@
                     </tbody>
                 </table>
                 {{ $users->links('vendor.pagination.table') }}
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script src="/assets/js/sweetalert2.all.min.js"></script>
                 <script>
                     function confirmDelete(userId) {
                         Swal.fire({
