@@ -73,7 +73,7 @@ Route::get('/guide', [PageController::class, 'guide'])->name('guide');
 Route::get('/products', [CustomerProductController::class, 'index'])->name('products');
 Route::get('/product/{id}', [CustomerProductController::class, 'show'])->name('product.detail');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
