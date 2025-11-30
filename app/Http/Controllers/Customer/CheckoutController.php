@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers\Customer;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -46,7 +46,14 @@ class CheckoutController extends Controller
         }
 
         // Calculate total
-        $total = $cartItems->sum(fn($item) => $item->product->price * $item->quantity) * $duration;
+        $total =
+            $cartItems->sum(function ($item) {
+                /** @var \App\Models\CartItem $item */
+                /** @var \App\Models\Product $product */
+                $product = $item->product;
+
+                return $product->price * $item->quantity;
+            }) * $duration;
 
         // Dates
         $loanDate = now();
@@ -63,10 +70,14 @@ class CheckoutController extends Controller
 
         // Attach cart items to order
         foreach ($cartItems as $item) {
+            /** @var \App\Models\CartItem $item */
+            /** @var \App\Models\Product $product */
+            $product = $item->product;
+
             $order->orderDetails()->create([
                 'product_id' => $item->product_id,
                 'quantity' => $item->quantity,
-                'price' => $item->product->price,
+                'price' => $product->price,
             ]);
         }
 

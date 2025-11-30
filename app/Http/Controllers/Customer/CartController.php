@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers\Customer;
 
 use App\Models\CartItem;
 use App\Models\Product;

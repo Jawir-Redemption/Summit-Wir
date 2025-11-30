@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,6 +11,9 @@ class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
+     */
+    /**
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -33,6 +37,9 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
+    /**
+     * @return \Illuminate\View\View
+     */
     public function show(Order $order)
     {
         $order->load(['user', 'orderDetails']);
@@ -42,6 +49,9 @@ class OrderController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     */
+    /**
+     * @return \Illuminate\View\View
      */
     public function edit(Order $order)
     {
@@ -71,8 +81,10 @@ class OrderController extends Controller
 
         // Jika status jadi completed, update stock/sold produk
         if ($validated['status'] === 'completed') {
-            $order->orderDetails->each(function ($detail) {
+            $order->orderDetails->each(function (OrderDetail $detail) {
+                /** @var \App\Models\Product $product */
                 $product = $detail->product;
+
                 $product->sold += $detail->quantity;
                 $product->save();
             });

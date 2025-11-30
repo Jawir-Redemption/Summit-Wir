@@ -3,24 +3,24 @@
 use Illuminate\Support\Facades\Route;
 
 // ==================== AUTH ====================
-use App\Http\Controllers\auth\LoginController;
-use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 // ==================== ADMIN ====================
-use App\Http\Controllers\customer\CartController;
-use App\Http\Controllers\customer\PageController;
-use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\customer\PaymentController;
-use App\Http\Controllers\customer\ProfileController;
+use App\Http\Controllers\Customer\CartController;
+use App\Http\Controllers\Customer\PageController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Customer\PaymentController;
+use App\Http\Controllers\Customer\ProfileController;
 
 // ==================== CUSTOMER ====================
-use App\Http\Controllers\customer\CheckoutController;
+use App\Http\Controllers\Customer\CheckoutController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use App\Http\Controllers\admin\UserController as AdminUserController;
-use App\Http\Controllers\admin\OrderController as AdminOrderController;
-use App\Http\Controllers\admin\ProductController as AdminProductController;
-use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
-use App\Http\Controllers\customer\ProductController as CustomerProductController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Customer\ProductController as CustomerProductController;
 
 /*
 |--------------------------------------------------------------------------
