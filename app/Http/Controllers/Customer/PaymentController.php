@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\customer;
+namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -32,11 +32,11 @@ class PaymentController extends Controller
             abort(403, 'Unauthorized access');
         }
 
-        $orderId = $order->id . '-' . uniqid();
+        $orderId = $order->id;
         $params = [
             'transaction_details' => [
                 'order_id' => $orderId,
-                'gross_amount' => $order->total_price * 0.5,
+                'gross_amount' => (int) round($order->total_price * 0.5),
             ],
             'customer_details' => [
                 'first_name' => $user->name,
@@ -63,8 +63,7 @@ class PaymentController extends Controller
             }
 
             // Extract the base order ID (before the dash)
-            $orderIdParts = explode('-', $data['order_id']);
-            $orderId = $orderIdParts[0] ?? null;
+            $orderId = $data['order_id'];
 
             $order = Order::find($orderId);
             if (!$order) {

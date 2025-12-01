@@ -87,8 +87,7 @@
 
             <!-- Right Image -->
             <div class="hidden lg:flex w-1/2 bg-indigo-50 justify-center items-center">
-                <img src="https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg"
-                    class="w-80" alt="Illustration">
+                <img src="/assets/svg/register.svg" class="w-80" alt="Illustration">
             </div>
         </div>
     </div>

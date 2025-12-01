@@ -3,7 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\OrderDetail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
@@ -32,12 +36,12 @@ class Order extends Model
         return $this->status;
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class)->withTrashed();
     }
 
-    public function orderDetails()
+    public function orderDetails(): HasMany
     {
         return $this->hasMany(OrderDetail::class);
     }

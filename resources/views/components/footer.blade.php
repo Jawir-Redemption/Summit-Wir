@@ -54,6 +54,3 @@
         <p>Dibuat dengan <span class="text-red-500">❤️</span> oleh SummitWirr Team</p>
     </div>
 </footer>
-
-{{-- Pastikan font awesome dimuat di layout --}}
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
