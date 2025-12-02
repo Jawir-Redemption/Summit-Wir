@@ -14,7 +14,7 @@
         <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
             Siap Naik Gunung? <br>
             Sewa Perlengkapan Outdoor Terbaik di 
-            <span class="text-blue-400">SummitWirr</span>
+            <span class="text-green-400">SummitWir</span>
         </h1>
 
         <p class="text-lg md:text-xl mb-6 text-gray-200 max-w-2xl">

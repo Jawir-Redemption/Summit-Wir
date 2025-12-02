@@ -135,21 +135,21 @@
                 </svg>
             </a>
 
-            {{-- Tombol login/logout --}}
+            {{-- Tombol Logout Saja --}}
             @auth
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit"
-                        class="bg-red-600 text-white px-3 py-1.5 rounded-lg hover:bg-red-700 transition text-sm">
+                        class="flex items-center gap-2 px-3 py-1.5
+                            text-sm text-red-600 bg-red-50
+                            rounded-lg border border-red-200
+                            hover:bg-red-100 transition">
+                        <i class="fas fa-sign-out-alt"></i>
                         Logout
                     </button>
                 </form>
-            @else
-                <a href="{{ route('login') }}"
-                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
-                    Login
-                </a>
             @endauth
+
         </div>
 
         {{-- Tombol menu mobile --}}

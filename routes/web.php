@@ -52,7 +52,7 @@ Route::controller(RegisterController::class)->group(function () {
 */
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'verified', 'is_admin'])
+    ->middleware(['auth', 'is_admin'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::resource('products', AdminProductController::class);
@@ -73,15 +73,27 @@ Route::get('/guide', [PageController::class, 'guide'])->name('guide');
 Route::get('/products', [CustomerProductController::class, 'index'])->name('products');
 Route::get('/product/{id}', [CustomerProductController::class, 'show'])->name('product.detail');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
+    // ==================== PROFILE ROUTES ====================
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    
+    // ==================== ORDERS ROUTES (BARU - DITAMBAHKAN) ====================
+    // NOTE: Tambahkan 4 route ini untuk halaman orders
+    Route::get('/profile/orders/pending', [ProfileController::class, 'pendingOrders'])->name('profile.orders.pending');
+    Route::get('/profile/orders/renting', [ProfileController::class, 'rentingOrders'])->name('profile.orders.renting');
+    Route::get('/profile/orders/completed', [ProfileController::class, 'completedOrders'])->name('profile.orders.completed');
+    Route::get('/profile/orders/cancelled', [ProfileController::class, 'cancelledOrders'])->name('profile.orders.cancelled');
+    // ========================================================================
+    
+    // ==================== CART ROUTES (TIDAK DIUBAH) ====================
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::patch('/cart/update/{cart}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/delete/{cart}', [CartController::class, 'deleteFromCart'])->name('cart.delete');
 
+    // ==================== CHECKOUT & PAYMENT ROUTES (TIDAK DIUBAH) ====================
     Route::get('/checkout/{order}', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::delete('/checkout/cancel/{order}', [CheckoutController::class, 'cancel'])->name('checkout.cancel');

@@ -22,8 +22,7 @@
         @yield('content')
     </main>
 
-    {{-- Footer --}}
-    @includeIf('components.footer')
+
 
 </body>
 </html>

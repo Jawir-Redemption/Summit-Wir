@@ -23,6 +23,7 @@
             color: #1f2937;
         }
     </style>
+    
 </head>
 
 <body class="min-h-screen flex flex-col">
@@ -36,6 +37,8 @@
 
     {{-- Footer --}}
     @includeIf('components.footer')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
     {{-- Script efek transparan navbar --}}
     <script>
