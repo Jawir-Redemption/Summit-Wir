@@ -9,7 +9,16 @@
             <!-- Form -->
             <div class="w-full lg:w-1/2 p-8 sm:p-10">
                 <h2 class="text-2xl font-bold text-gray-800 text-center">Create Your Account</h2>
-
+                @if ($errors->any())
+                    <div class="mb-4 rounded-lg bg-red-50 border border-red-300 p-4 text-red-800">
+                        <div class="font-semibold">There were some errors:</div>
+                        <ul class="mt-2 list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                   </div>
+                @endif
                 <form class="mt-8 space-y-6" method="POST" action="{{ route('register.post') }}">
                     @csrf
 

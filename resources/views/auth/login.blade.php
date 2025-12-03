@@ -16,7 +16,17 @@
             <!-- Login Form -->
             <div class="p-10 sm:p-10 flex flex-col justify-center bg-white">
                 <h2 class="text-3lg font-extrabold text-gray-800 mb-8">Sign in to your account</h2>
-
+                @if ($errors->any())
+                    <div class="mb-4 rounded-lg bg-red-50 border border-red-300 p-4 text-red-800">
+                        <div class="font-semibold">There were some errors:</div>
+                        <ul class="mt-2 list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                   </div>
+                @endif
+                
                 <form class="space-y-6" method="POST" action="{{ route('login') }}">
                     @csrf
 
