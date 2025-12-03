@@ -11,7 +11,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'loan_date', 'return_date', 'duration', 'status', 'total_price', 'total_fine'];
+    protected $fillable = [
+        'user_id',
+        'loan_date',
+        'return_date',
+        'duration',
+        'status',
+        'total_price',
+        'total_fine',
+        'snap_token',
+    ];
 
     protected $dates = ['loan_date', 'return_date'];
 

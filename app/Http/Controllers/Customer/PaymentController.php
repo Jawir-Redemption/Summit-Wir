@@ -27,12 +27,20 @@ class PaymentController extends Controller
     {
         $user = Auth::user();
 
-        // Ensure the order belongs to the authenticated user
         if ($order->user_id != $user->id) {
-            abort(403, 'Unauthorized access');
+            abort(403);
+        }
+
+        // If order already has a snap token, reuse it
+        if ($order->snap_token) {
+            return view('customer.payment', [
+                'order' => $order,
+                'snapToken' => $order->snap_token,
+            ]);
         }
 
         $orderId = $order->id;
+
         $params = [
             'transaction_details' => [
                 'order_id' => $orderId,
@@ -45,6 +53,8 @@ class PaymentController extends Controller
         ];
 
         $snapToken = Snap::getSnapToken($params);
+
+        $order->update(['snap_token' => $snapToken]);
 
         return view('customer.payment', compact('order', 'snapToken'));
     }

@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->bigInteger('total_price')->unsigned();
             $table->bigInteger('total_fine')->unsigned()->nullable();
             $table->string('status')->nullable();
+            $table->string('snap_token')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
