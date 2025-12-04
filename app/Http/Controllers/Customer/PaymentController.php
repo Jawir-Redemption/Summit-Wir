@@ -32,7 +32,7 @@ class PaymentController extends Controller
         }
 
         // If order already has a snap token, reuse it
-        if ($order->snap_token) {
+        if ($order->snap_token && $order->status === 'pending') {
             return view('customer.payment', [
                 'order' => $order,
                 'snapToken' => $order->snap_token,
@@ -81,12 +81,32 @@ class PaymentController extends Controller
                 return response()->json(['message' => 'Order not found'], 404);
             }
 
-            $transactionStatus = $data['transaction_status'] ?? null;
-            $paymentType = $data['payment_type'] ?? null;
+            $transactionStatus = $data['transaction_status'];
 
-            if ($transactionStatus === 'settlement' && $paymentType === 'qris') {
-                $order->update(['status' => 'paid']);
-                Log::info("Order #{$order->id} updated to PAID via QRIS");
+            switch ($transactionStatus) {
+                case 'pending':
+                    $order->update(['status' => 'pending']);
+                    break;
+
+                case 'settlement':
+                    $order->update(['status' => 'paid']);
+                    break;
+
+                case 'expire':
+                    $order->update(['status' => 'expired']);
+                    break;
+
+                case 'cancel':
+                    $order->update(['status' => 'cancelled']);
+                    break;
+
+                case 'deny':
+                    $order->update(['status' => 'failed']);
+                    break;
+
+                default:
+                    Log::warning("Unhandled Midtrans status: {$transactionStatus}");
+                    break;
             }
 
             return response()->json(['message' => 'Notification processed']);
