@@ -102,7 +102,7 @@ class CheckoutController extends Controller
                 ->with('error', 'Pesanan ini tidak dapat dibatalkan.');
         }
 
-        $order->status = 'canceled';
+        $order->status = 'cancelled';
         $order->save();
 
         return redirect()->route('home')->with('success', 'Pesanan berhasil dibatalkan.');

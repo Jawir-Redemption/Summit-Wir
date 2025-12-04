@@ -14,30 +14,19 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        
-        $pendingCount = Order::where('user_id', $user->id)
-            ->where('status', 'pending')
-            ->count();
-            
-        $rentingCount = Order::where('user_id', $user->id)
-            ->where('status', 'renting')
-            ->count();
-            
-        $completedCount = Order::where('user_id', $user->id)
-            ->where('status', 'completed')
-            ->count();
-            
-        $cancelledCount = Order::where('user_id', $user->id)
-            ->where('status', 'cancelled')
-            ->count();
-        
-        return view('customer.profile.index', compact(
-            'user',
-            'pendingCount',
-            'rentingCount',
-            'completedCount',
-            'cancelledCount'
-        ));
+
+        $pendingCount = Order::where('user_id', $user->id)->where('status', 'pending')->count();
+
+        $rentingCount = Order::where('user_id', $user->id)->where('status', 'renting')->count();
+
+        $completedCount = Order::where('user_id', $user->id)->where('status', 'completed')->count();
+
+        $cancelledCount = Order::where('user_id', $user->id)->where('status', 'cancelled')->count();
+
+        return view(
+            'customer.profile.index',
+            compact('user', 'pendingCount', 'rentingCount', 'completedCount', 'cancelledCount'),
+        );
     }
 
     public function edit()
@@ -46,7 +35,7 @@ class ProfileController extends Controller
         return view('customer.profile.edit', compact('user'));
     }
 
-     public function update(Request $request)
+    public function update(Request $request)
     {
         $user = Auth::user();
 
@@ -55,7 +44,7 @@ class ProfileController extends Controller
             'name' => 'required|string|max:255',
             'no_hp' => 'nullable|string|max:20',
             'ktp_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'current_password' => 'nullable|string|min:8',
+            'current_password' => 'nullable|string',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
@@ -95,7 +84,7 @@ class ProfileController extends Controller
     }
 
     // ========== METHOD ORDERS (SUDAH DISESUAIKAN) ==========
-    
+
     public function pendingOrders()
     {
         $orders = Order::where('user_id', Auth::id())
@@ -103,7 +92,7 @@ class ProfileController extends Controller
             ->with(['orderDetails.product']) // ← UBAH dari orderItems jadi orderDetails
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            
+
         return view('customer.orders.pending', compact('orders'));
     }
 
@@ -114,7 +103,7 @@ class ProfileController extends Controller
             ->with(['orderDetails.product']) // ← UBAH dari orderItems jadi orderDetails
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            
+
         return view('customer.orders.renting', compact('orders'));
     }
 
@@ -125,7 +114,7 @@ class ProfileController extends Controller
             ->with(['orderDetails.product']) // ← UBAH dari orderItems jadi orderDetails
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            
+
         return view('customer.orders.completed', compact('orders'));
     }
 
@@ -136,7 +125,7 @@ class ProfileController extends Controller
             ->with(['orderDetails.product']) // ← UBAH dari orderItems jadi orderDetails
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            
+
         return view('customer.orders.cancelled', compact('orders'));
     }
 }
