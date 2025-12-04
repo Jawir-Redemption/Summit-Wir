@@ -21,13 +21,15 @@ class RegisterController extends Controller
     {
         $credentials = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'phone' => ['required', 'string', 'max:20'],
+            'password' => ['required', 'confirmed', 'min:8'],
         ]);
 
         $user = User::create([
             'name' => $credentials['name'],
             'email' => $credentials['email'],
+            'phone' => $credentials['phone'],
             'password' => Hash::make($credentials['password']),
         ]);
 
