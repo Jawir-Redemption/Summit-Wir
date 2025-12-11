@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('description')->nullable();
             $table->bigInteger('price')->unsigned();
-            $table->integer('stock');
+            $table->integer('stock')->default(0);
             $table->integer('sold')->default(0);
             $table->string('image')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');

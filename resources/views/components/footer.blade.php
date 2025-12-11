@@ -5,10 +5,10 @@
 
             <!-- LOGO + ALAMAT -->
             <div class="space-y-6">
-                <img src="assets/img/logo-s.png" 
+                <img src="assets/img/logo-f.png" 
                      alt="SummitWir" 
                      class="max-w-[220px] object-contain">
-
+  
                 <div class="space-y-4 text-gray-300 text-base leading-relaxed">
 
                     <!-- Alamat -->
@@ -37,10 +37,7 @@
             <div class="space-y-4">
                 <h3 class="font-semibold text-xl mb-4">Informasi</h3>
                 <ul class="space-y-3 text-gray-400">
-                    <li><a href="#" class="hover:text-white">Cara sewa</a></li>
-                    <li><a href="#" class="hover:text-white">Cara jadi member</a></li>
-                    <li><a href="#" class="hover:text-white">Cara pengembalian</a></li>
-                    <li><a href="#" class="hover:text-white">Syarat dan Ketentuan</a></li>
+                    <li><a href="{{ route('guide') }}" class="hover:text-white">Cara sewa</a></li>
                 </ul>
             </div>
 

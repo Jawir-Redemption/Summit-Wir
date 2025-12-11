@@ -11,11 +11,17 @@
                 @foreach ($cartItems as $item)
                     <div class="bg-white p-4 rounded shadow flex items-center justify-between">
                         <div class="flex items-center gap-4">
-                            <img src="{{ asset('storage/' . $item->product->image) }}" class="w-20 h-20 object-cover rounded">
+                            <a href="{{ route('product.detail', $item->product->id) }}" class="flex-shrink-0">
+                                <img src="{{ asset('storage/' . $item->product->image) }}" 
+                                    class="w-20 h-20 object-cover rounded hover:opacity-80 transition-opacity cursor-pointer"
+                                    alt="{{ $item->product->name ?? 'Produk' }}">
+                            </a>
                             <div>
-                                <h3 class="font-semibold">{{ $item->product->name ?? 'Produk' }}</h3>
-                                <p class="text-sm text-gray-500">Rp {{ number_format($item->product->price, 0, ',', '.') }}
-                                </p>
+                                <a href="{{ route('product.detail', $item->product->id) }}" 
+                                    class="hover:text-blue-600 transition-colors">
+                                    <h3 class="font-semibold">{{ $item->product->name ?? 'Produk' }}</h3>
+                                </a>
+                                <p class="text-sm text-gray-500">Rp {{ number_format($item->product->price, 0, ',', '.') }}</p>
                             </div>
 
                             {{-- Quantity Controls --}}

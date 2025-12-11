@@ -70,7 +70,7 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
 */
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'verified', 'is_admin'])
+    ->middleware(['auth', 'is_admin'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::resource('products', AdminProductController::class);
@@ -91,7 +91,7 @@ Route::get('/guide', [PageController::class, 'guide'])->name('guide');
 Route::get('/products', [CustomerProductController::class, 'index'])->name('products');
 Route::get('/product/{id}', [CustomerProductController::class, 'show'])->name('product.detail');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     // ==================== PROFILE ROUTES ====================
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
