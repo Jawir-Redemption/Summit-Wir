@@ -50,8 +50,25 @@
 
                             <span class="ml-2">Detail Peminjaman</span>
                         </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-300"><span class="font-medium">Status:
-                                {{ $order->display_status }}</p>
+                        @if ($order->display_status == 'pending')
+                            <p class="text-sm text-gray-600 dark:text-gray-300"><span class="font-medium">Status: Pending
+                            </p>
+                        @elseif ($order->display_status == 'paid')
+                            <p class="text-sm text-gray-600 dark:text-gray-300"><span class="font-medium">Status: Sudah
+                                    Dibayar</p>
+                        @elseif ($order->display_status == 'on_rent')
+                            <p class="text-sm text-gray-600 dark:text-gray-300"><span class="font-medium">Status: Dalam
+                                    Penyewaan</p>
+                        @elseif ($order->display_status == 'overdue')
+                            <p class="text-sm text-gray-600 dark:text-gray-300"><span class="font-medium">Status: Terlambat
+                            </p>
+                        @elseif ($order->display_status == 'completed')
+                            <p class="text-sm text-gray-600 dark:text-gray-300"><span class="font-medium">Status: Selesai
+                            </p>
+                        @elseif ($order->display_status == 'cancelled')
+                            <p class="text-sm text-gray-600 dark:text-gray-300"><span class="font-medium">Status: Dibatalkan
+                            </p>
+                        @endif
                         <p class="text-sm text-gray-600 dark:text-gray-300"><span class="font-medium">Tanggal Peminjaman:
                                 {{ \Carbon\Carbon::parse($order->loan_date)->translatedFormat('H:i:s, d F Y') }}
                         </p>

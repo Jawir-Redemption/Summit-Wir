@@ -22,6 +22,12 @@ class Order extends Model
         'snap_token',
     ];
 
+    protected $casts = [
+        'loan_date' => 'datetime',
+        'return_date' => 'datetime',
+        'duration' => 'integer',
+    ];
+
     protected $dates = ['loan_date', 'return_date'];
 
     protected $appends = ['displayStatus'];
