@@ -55,19 +55,20 @@
                                         @method('PUT')
                                         <select name="status" onchange="this.form.submit()"
                                             class="border rounded-lg px-2 py-1 text-sm focus:ring focus:ring-purple-300 dark:bg-gray-800 dark:text-gray-200">
-                                            <option value="pending"
-                                                {{ $order->display_status == 'pending' ? 'selected' : '' }}>
-                                                Pending</option>
                                             <option value="paid" {{ $order->display_status == 'paid' ? 'selected' : '' }}>
                                                 Sudah Dibayar</option>
-                                            <option value="on_rent" {{ $order->status == 'on_rent' ? 'selected' : '' }}>
+                                            <option value="on_rent"
+                                                {{ $order->display_status == 'on_rent' ? 'selected' : '' }}>
                                                 Dalam Penyewaan</option>
-                                            <option value="overdue" {{ $order->status == 'overdue' ? 'selected' : '' }}>
+                                            <option value="overdue"
+                                                {{ $order->display_status == 'overdue' ? 'selected' : '' }}>
                                                 Terlambat</option>
                                             <option value="completed"
-                                                {{ $order->status == 'completed' ? 'selected' : '' }}>Selesai</option>
+                                                {{ $order->display_status == 'completed' ? 'selected' : '' }}>Selesai
+                                            </option>
                                             <option value="cancelled"
-                                                {{ $order->status == 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
+                                                {{ $order->display_status == 'cancelled' ? 'selected' : '' }}>Dibatalkan
+                                            </option>
                                         </select>
                                     </form>
                                 </td>

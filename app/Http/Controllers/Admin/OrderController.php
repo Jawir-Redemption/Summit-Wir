@@ -17,19 +17,13 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('search') && $request->search != '') {
-            $orders = Order::with('user')
-                ->when($request->search, function ($query, $search) {
-                    $query->where('id', 'like', "%{$search}%")->orWhereHas('user', function ($q) use ($search) {
-                        $q->where('name', 'like', "%{$search}%");
-                    });
-                })
-                ->latest()
-                ->paginate(10)
-                ->withQueryString();
-        } else {
-            $orders = Order::with('user')->latest()->paginate(10)->withQueryString();
-        }
+        $orders = Order::with('user')
+            ->when($request->filled('status'), function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         return view('admin.orders.index', compact('orders'));
     }
@@ -75,6 +69,25 @@ class OrderController extends Controller
         if ($validated['status'] === 'on_rent') {
             $order->loan_date = now();
             $order->return_date = now()->addDays($order->duration);
+            foreach ($order->orderDetails as $detail) {
+                $product = $detail->product;
+                $product->stock -= $detail->quantity;
+                $product->sold += $detail->quantity;
+                $product->save();
+            }
+
+            $order->save();
+            return redirect()->route('admin.orders.show', $order->id);
+        }
+
+        if ($validated['status'] === 'paid') {
+            foreach ($order->orderDetails as $detail) {
+                $product = $detail->product;
+                $product->stock -= $detail->quantity;
+                $product->sold += $detail->quantity;
+                $product->save();
+            }
+
             $order->save();
             return redirect()->route('admin.orders.show', $order->id);
         }

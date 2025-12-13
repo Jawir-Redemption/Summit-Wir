@@ -90,6 +90,13 @@ class PaymentController extends Controller
 
                 case 'settlement':
                     $order->update(['status' => 'paid']);
+                    // decrease stock
+                    foreach ($order->orderDetails as $detail) {
+                        $product = $detail->product;
+                        $product->stock -= $detail->quantity;
+                        $product->sold += $detail->quantity;
+                        $product->save();
+                    }
                     break;
 
                 case 'expire':
