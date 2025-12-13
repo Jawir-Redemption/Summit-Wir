@@ -16,25 +16,28 @@
             <li><a href="{{ route('guide') }}" class="nav-link transition{{ request()->routeIs('home') ? 'text-white hover:text-green-400' : 'text-gray-800 hover:text-green-600' }}">Guide</a></li>
         </ul>
 
-        {{-- Bagian kanan: Cart & Account --}}
+        {{-- Bagian kanan: Keranjang & Account --}}
         <div class="hidden md:flex items-center space-x-6">
-            {{-- Cart dengan Hover --}}
+           
+            {{-- Hover Keranjang --}}
             <div class="relative cart-hover-container">
-                <a href="{{ route('cart') }}" class="text-gray-800 hover:text-blue-600 transition relative" title="Keranjang">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.293 2.707A1 1 0 007.618 17h8.764a1 1 0 00.911-1.293L17 13M10 21h.01M14 21h.01" />
-                    </svg>
-                    @php
-                        $cartCount = Auth::check() ? \App\Models\CartItem::where('user_id', Auth::id())->count() : 0;
-                    @endphp
-                    @if($cartCount > 0)
-                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
-                            {{ $cartCount }}
-                        </span>
-                    @endif
-                </a>
+                <a href="{{ route('cart') }}"
+                    class="nav-icon relative p-2 rounded-full transition hover:text-green-600"
+                        title="Keranjang">
+                            <i class="fas fa-shopping-cart"></i>
+                            @php
+                                $cartCount = Auth::check()
+                                    ? \App\Models\CartItem::where('user_id', Auth::id())->count()
+                                    : 0;
+                            @endphp
+                            @if ($cartCount > 0)
+                                <span
+                                    class="absolute -top-2 -right-2 bg-red-500 text-white text-xs
+                                        rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                                    {{ $cartCount }}
+                                </span>
+                            @endif
+                        </a>
 
                 {{-- Hover Dropdown --}}
                 <div class="cart-hover-dropdown absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible transition-all duration-300 transform translate-y-2">
@@ -128,12 +131,10 @@
             </div>
 
             {{-- Akun --}}
-            <a href="{{ route('profile.index') }}" class="text-gray-800 hover:text-blue-600 transition" title="Akun">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5.121 17.804A9 9 0 1118.879 17.8M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
+           <a href="{{ route('profile.index') }}"
+                class="p-2 rounded-full text-gray-600 "
+                title="Profil Saya">
+                    <i class="fas fa-user nav-icon hover:text-green-600"></i>
             </a>
 
             {{-- Tombol Logout --}}
@@ -196,17 +197,22 @@
 {{-- Script scroll & mobile menu --}}
 @if (request()->routeIs('home'))
 <script>
-    const navbar = document.getElementById('navbar');
+    const navbar   = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     const navBrand = document.getElementById('nav-brand');
+    const navIcons = document.querySelectorAll('.nav-icon');
 
-    window.addEventListener('scroll', () => {
+    function handleNavbar() {
         if (window.scrollY > 50) {
             navbar.classList.remove('bg-transparent');
             navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-md');
             navLinks.forEach(link => {
                 link.classList.remove('text-white', 'hover:text-green-400');
                 link.classList.add('text-gray-800', 'hover:text-green-600');
+            });
+            navIcons.forEach(icon => {
+                icon.classList.remove('text-white');
+                icon.classList.add('text-gray-700');
             });
             navBrand.classList.remove('text-white');
             navBrand.classList.add('text-gray-900');
@@ -217,12 +223,24 @@
                 link.classList.add('text-white', 'hover:text-green-400');
                 link.classList.remove('text-gray-800', 'hover:text-green-600');
             });
+            navIcons.forEach(icon => {
+                icon.classList.add('text-white');
+                icon.classList.remove('text-gray-700');
+            });
             navBrand.classList.add('text-white');
             navBrand.classList.remove('text-gray-900');
         }
-    });
+    }
+
+
+    // 🔑 PENTING: set kondisi awal saat page load
+    handleNavbar();
+
+    // Jalankan saat scroll
+    window.addEventListener('scroll', handleNavbar);
 </script>
 @endif
+
 
 <script>
     // Mobile menu toggle
