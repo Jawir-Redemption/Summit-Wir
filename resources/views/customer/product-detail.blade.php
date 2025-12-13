@@ -54,10 +54,9 @@
 
                         <div class="flex gap-3">
                             <button type="submit"
-                                class="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition">
+                                class=" px-4 py-2 border rounded-lg hover:bg-gray-50 ">
                                 Booking Sekarang
                             </button>
-                            <a href="/checkout" class="px-4 py-2 border rounded-lg hover:bg-gray-50">Checkout</a>
                         </div>
                     </form>
                 </div>

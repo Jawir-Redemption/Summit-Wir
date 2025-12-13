@@ -15,6 +15,29 @@
                         Tambah Produk
                     </button>
                 </a>
+
+                {{-- Filter Produk --}}
+                    <form action="{{ route('admin.products.index') }}" method="GET"
+                        class="mt-4 mb-6 flex flex-wrap items-end gap-4">
+
+                        {{-- Filter Kategori --}}
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Kategori
+                            </label>
+                            <select name="category" onchange="this.form.submit()"
+                                class="border rounded-lg px-3 py-2 w-56 dark:bg-gray-800 dark:text-white">
+                                <option value="">Semua Kategori</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ request('category') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->category }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
+
                 <table class="w-full whitespace-no-wrap mt-4">
                     <thead>
                         <tr

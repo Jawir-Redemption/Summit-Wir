@@ -8,6 +8,43 @@
         <!-- New Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mb-8">
             <div class="w-full overflow-x-auto">
+                
+                <!--FITUR FILTER BERDASARKAN STATUS-->
+                <form action="{{ route('admin.orders.index') }}" method="GET"
+                    class="mb-6 flex items-end gap-4">
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Filter Status Order
+                        </label>
+                        <select name="status" onchange="this.form.submit()"
+                            class="border rounded-lg px-3 py-2 w-56 dark:bg-gray-800 dark:text-white">
+                            <option value="">Semua Status</option>
+                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
+                                Pending
+                            </option>
+                            <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>
+                                Sudah Dibayar
+                            </option>
+                            <option value="on_rent" {{ request('status') == 'on_rent' ? 'selected' : '' }}>
+                                Dalam Penyewaan
+                            </option>
+                            <option value="overdue" {{ request('status') == 'overdue' ? 'selected' : '' }}>
+                                Terlambat
+                            </option>
+                            <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>
+                                Selesai
+                            </option>
+                            <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>
+                                Dibatalkan
+                            </option>
+                            <option value="failed" {{ request('status') == 'failed' ? 'selected' : '' }}>
+                                Gagal
+                            </option>
+                        </select>
+                    </div>
+                </form>
+
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr

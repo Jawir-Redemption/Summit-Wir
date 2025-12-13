@@ -15,6 +15,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $categories = Category::all();
+
         $query = Product::query();
 
         if ($request->filled('category')) {
@@ -33,7 +35,7 @@ class ProductController extends Controller
             }
         }
         $products = $query->with('category')->latest()->paginate(10)->withQueryString();
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact('products', 'categories'));
     }
 
     /**

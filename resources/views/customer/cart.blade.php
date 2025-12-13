@@ -25,28 +25,39 @@
                             </div>
 
                             {{-- Quantity Controls --}}
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
                                 <form action="{{ route('cart.update', $item->id) }}" method="POST"
                                     class="flex items-center gap-2 autosave-form">
                                     @csrf
                                     @method('PATCH')
-
                                     <button type="button"
-                                        class="decrement bg-blue-700 text-white px-2 py-1 rounded">-</button>
-                                    <input type="number" name="quantity" value="{{ $item->quantity }}" min="1"
-                                        class="w-12 text-center border rounded quantity-input">
+                                        class="decrement px-4 py-2 text-gray-700 hover:bg-gray-100 transition">
+                                        −
+                                    </button>
+                                    <input type="number"name="quantity" value="{{ $item->quantity }}" min="1"
+                                        class="w-12 text-center border-x border-gray-300 focus:outline-none quantity-input">
                                     <button type="button"
-                                        class="increment bg-blue-700 text-white px-2 py-1 rounded">+</button>
+                                        class="increment px-4 py-2 text-gray-700 hover:bg-gray-100 transition">
+                                        +
+                                    </button>
                                 </form>
                             </div>
                         </div>
-
-
 
                         <div class="text-right">
                             <p class="font-bold">Rp
                                 {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}
                             </p>
+                            
+                            {{-- TAMBAHAN: Tombol Hapus --}}
+                            <form action="{{ route('cart.delete', $item->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini dari keranjang?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-800 text-sm transition">
+                                    Hapus
+                                </button>
+                            </form>
+                            {{-- AKHIR TAMBAHAN --}}
                         </div>
                     </div>
                 @endforeach
