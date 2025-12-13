@@ -19,7 +19,13 @@ class OrderController extends Controller
     {
         $orders = Order::with('user')
             ->when($request->filled('status'), function ($query) use ($request) {
-                $query->where('status', $request->status);
+                if ($request->status === 'overdue') {
+                    $query
+                        ->whereNotIn('status', ['completed', 'cancelled'])
+                        ->whereRaw('DATE_ADD(loan_date, INTERVAL duration DAY) < ?', [now()]);
+                } else {
+                    $query->where('status', $request->status);
+                }
             })
             ->latest()
             ->paginate(10)

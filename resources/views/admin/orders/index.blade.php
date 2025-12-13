@@ -8,10 +8,9 @@
         <!-- New Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mb-8">
             <div class="w-full overflow-x-auto">
-                
+
                 <!--FITUR FILTER BERDASARKAN STATUS-->
-                <form action="{{ route('admin.orders.index') }}" method="GET"
-                    class="mb-6 flex items-end gap-4">
+                <form action="{{ route('admin.orders.index') }}" method="GET" class="mb-6 flex items-end gap-4">
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -37,9 +36,6 @@
                             </option>
                             <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>
                                 Dibatalkan
-                            </option>
-                            <option value="failed" {{ request('status') == 'failed' ? 'selected' : '' }}>
-                                Gagal
                             </option>
                         </select>
                     </div>
@@ -95,7 +91,8 @@
                                             <option value="pending"
                                                 {{ $order->display_status == 'pending' ? 'selected' : '' }} disabled>
                                                 Pending</option>
-                                            <option value="paid" {{ $order->display_status == 'paid' ? 'selected' : '' }}>
+                                            <option value="paid"
+                                                {{ $order->display_status == 'paid' ? 'selected' : '' }}>
                                                 Sudah Dibayar</option>
                                             <option value="on_rent"
                                                 {{ $order->display_status == 'on_rent' ? 'selected' : '' }}>
