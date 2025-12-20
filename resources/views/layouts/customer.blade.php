@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@yield('title', 'SummitWirr')</title>
+    
+    
+    <link rel="icon" href="{{ asset('assets/img/logo-f.png') }}" type="image/png">
 
     {{-- Vite (Tailwind + JS otomatis dari Laravel) --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- Reusable Animations --}}
+    <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
+
+    {{-- Brand Marquee CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/brand-marquee.css') }}">
+    @stack('styles')
 
     {{-- Font Inter --}}
     <link rel="stylesheet"
@@ -60,5 +70,7 @@
         });
     </script>
 
+    {{-- Animations Script --}}
+        <script src="{{ asset('js/scroll-animations.js') }}"></script>
 </body>
 </html>

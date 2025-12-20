@@ -69,7 +69,7 @@
                 </div>
 
                 <!-- Step by Step Guide -->
-                <div class="space-y-6 md:space-y-8">
+                <div class="space-y-6 md:space-y-8 scroll-animate delay-1">
                     
                     <!-- Step 1 -->
                     <div class="bg-white rounded-lg md:rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 lg:p-8 hover:shadow-md transition-shadow">
@@ -268,7 +268,7 @@
                 </div>
 
                 <!-- Additional Info -->
-                <div class="mt-8 md:mt-12 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg md:rounded-xl p-4 md:p-6 lg:p-8 border border-emerald-100">
+                <div class="mt-8 md:mt-12 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg md:rounded-xl p-4 md:p-6 lg:p-8 border border-emerald-100 scroll-animate delay-2 ">
                     <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 flex items-center">
                         <svg class="w-5 h-5 md:w-6 md:h-6 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -303,14 +303,14 @@
                 <div class="lg:sticky lg:top-6 space-y-4 md:space-y-6">
 
                     <!-- Contact Card -->
-                    <div class="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg md:rounded-xl p-4 md:p-6 text-white shadow-lg">
+                    <div class="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg md:rounded-xl p-4 md:p-6 text-white shadow-lg scroll-animate delay-3">
                         <h3 class="text-base md:text-lg font-bold mb-2">
                             Butuh Bantuan?
                         </h3>
                         <p class="text-emerald-100 text-xs md:text-sm mb-3 md:mb-4">
                             Tim kami siap membantu Anda
                         </p>
-                        <a href="#" class="inline-flex items-center justify-center w-full bg-white text-emerald-600 font-semibold py-2 md:py-2.5 px-4 rounded-lg hover:bg-emerald-50 transition-colors text-sm md:text-base shadow-md">
+                        <a href="mailto:summitwir@gmail.com" class="inline-flex items-center justify-center w-full bg-white text-emerald-600 font-semibold py-2 md:py-2.5 px-4 rounded-lg hover:bg-emerald-50 transition-colors text-sm md:text-base shadow-md">
                             <svg class="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>

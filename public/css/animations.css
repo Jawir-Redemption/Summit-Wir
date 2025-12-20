@@ -1,0 +1,259 @@
+/* ===================================
+   Reusable Animations
+   Animasi yang bisa dipakai di seluruh website
+   =================================== */
+
+/* ==================
+   SCROLL-TRIGGERED ANIMATIONS
+   Animasi yang trigger saat element terlihat
+   ================== */
+
+/* Base state: Hidden sebelum scroll */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out;
+}
+
+/* State setelah terlihat: Animasi jalan */
+.scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Variasi Scroll Animations */
+.scroll-animate.from-left {
+    transform: translateX(-50px);
+}
+
+.scroll-animate.from-left.animate {
+    transform: translateX(0);
+}
+
+.scroll-animate.from-right {
+    transform: translateX(50px);
+}
+
+.scroll-animate.from-right.animate {
+    transform: translateX(0);
+}
+
+.scroll-animate.scale {
+    transform: scale(0.8);
+}
+
+.scroll-animate.scale.animate {
+    transform: scale(1);
+}
+
+/* Delay untuk multiple elements */
+.scroll-animate.delay-1 {
+    transition-delay: 0.1s;
+}
+.scroll-animate.delay-2 {
+    transition-delay: 0.2s;
+}
+.scroll-animate.delay-3 {
+    transition-delay: 0.3s;
+}
+.scroll-animate.delay-4 {
+    transition-delay: 0.4s;
+}
+.scroll-animate.delay-5 {
+    transition-delay: 0.5s;
+}
+.scroll-animate.delay-6 {
+    transition-delay: 0.6s;
+}
+.scroll-animate.delay-7 {
+    transition-delay: 0.7s;
+}
+.scroll-animate.delay-8 {
+    transition-delay: 0.8s;
+}
+
+/* Speed variations */
+.scroll-animate.slow {
+    transition-duration: 1.2s;
+}
+
+.scroll-animate.fast {
+    transition-duration: 0.4s;
+}
+
+/* ==================
+   FADE UP ANIMATIONS (Original - Langsung jalan)
+   ================== */
+
+/* Fade Up: Muncul dari bawah dengan opacity */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Mulai 30px di bawah */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Posisi normal */
+    }
+}
+
+/* Class untuk Apply Animasi */
+.fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+/* Variasi Delay untuk Multiple Elements */
+.fade-up-delay-1 {
+    animation: fadeUp 0.8s ease-out 0.2s forwards;
+    opacity: 0; /* Hidden sebelum animasi */
+}
+
+.fade-up-delay-2 {
+    animation: fadeUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.fade-up-delay-3 {
+    animation: fadeUp 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+.fade-up-delay-4 {
+    animation: fadeUp 0.8s ease-out 0.8s forwards;
+    opacity: 0;
+}
+
+/* ==================
+   FADE IN ANIMATIONS
+   ================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* ==================
+   SLIDE ANIMATIONS
+   ================== */
+
+/* Slide dari Kiri */
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-from-left {
+    animation: slideFromLeft 0.8s ease-out forwards;
+}
+
+/* Slide dari Kanan */
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-from-right {
+    animation: slideFromRight 0.8s ease-out forwards;
+}
+
+/* ==================
+   UTILITY CLASSES
+   ================== */
+
+/* Speed Variations */
+.anim-slow {
+    animation-duration: 1.5s !important;
+}
+
+.anim-fast {
+    animation-duration: 0.4s !important;
+}
+
+/* Custom Delays (bisa kombinasi dengan animasi apapun) */
+.delay-100 {
+    animation-delay: 0.1s;
+    opacity: 0;
+}
+.delay-200 {
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+.delay-300 {
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+.delay-400 {
+    animation-delay: 0.4s;
+    opacity: 0;
+}
+.delay-500 {
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+.delay-600 {
+    animation-delay: 0.6s;
+    opacity: 0;
+}
+.delay-700 {
+    animation-delay: 0.7s;
+    opacity: 0;
+}
+.delay-800 {
+    animation-delay: 0.8s;
+    opacity: 0;
+}
+.delay-1000 {
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+/* ==================
+   SPECIAL EFFECTS
+   ================== */
+
+/* Typing Effect (untuk teks) */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Glow Effect */
+@keyframes glow {
+    0%,
+    100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.glow {
+    animation: glow 2s ease-in-out infinite;
+}

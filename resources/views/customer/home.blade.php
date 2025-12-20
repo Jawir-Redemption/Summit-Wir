@@ -5,19 +5,19 @@
 @section('content')
     {{-- HERO SECTION --}}
     <section id="hero" 
-    class="relative bg-cover bg-center bg-no-repeat h-[80vh] -mt-[80px]"
-    style="background-image: url('{{ asset('assets/img/bg-tent.jpg') }}');">
+    class="relative bg-cover bg-center bg-no-repeat h-[100vh] -mt-[80px]"
+    style="background-image: url('{{ asset('assets/img/bg-tent2.jpg') }}');">
 
-    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="absolute inset-0 bg-black/50"></div>    
 
-    <div class="relative z-10 max-w-6xl mx-auto h-full flex flex-col justify-center px-6 text-white pt-[80px]">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+            <div class="relative z-10 max-w-6xl mx-auto h-full flex flex-col justify-center px-6 text-white pt-[80px]">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight scroll-animate slow">
             Siap Naik Gunung? <br>
             Sewa Perlengkapan Outdoor Terbaik di 
-            <span class="text-green-400">SummitWir</span>
+            <span class="text-green-400 ">SummitWir</span>
         </h1>
 
-        <p class="text-lg md:text-xl mb-6 text-gray-200 max-w-2xl">
+        <p class="text-lg md:text-xl mb-6 text-gray-200 max-w-2xl scroll-animate delay-3">
             Nikmati pengalaman mendaki dan berkemah tanpa repot membeli alat baru.
             Cukup sewa, nikmati, dan jelajahi alam dengan mudah!
         </p>
@@ -33,11 +33,14 @@
         </div>
     </section>
 
+     {{-- BRAND MARQUEE/animasi merk --}}
+    @include('components.brand-marquee')
+
     {{-- SECTION: HIGHLIGHT PRODUK --}}
     <section id="highlight-products" class="py-16 bg-gray-50">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Produk Terpopuler</h2>
-            <p class="text-gray-500 mb-10">Temukan perlengkapan outdoor terbaik pilihan para pendaki</p>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2 scroll-animate delay-1">Produk Terpopuler</h2>
+            <p class="text-gray-500 mb-10 scroll-animate delay-3">Temukan perlengkapan outdoor terbaik pilihan para pendaki</p>
 
             
             {{-- Grid Produk --}}
@@ -93,8 +96,8 @@
             {{-- Tombol ke semua produk --}}
             <div class="mt-12">
                 <a href="{{ route('products') }}"
-                    class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium shadow-md transition">
-                    Lihat Semua Produk
+                    class="px-6 py-3 bg-green-600 hover:bg-gray-700 rounded-lg text-white font-medium shadow-md transition scroll-animate slow">
+                    Lihat Lainnya
                 </a>
             </div>
         </div>
@@ -104,17 +107,17 @@
     <section class="w-full px-10 py-20 bg-white">
         <div class="max-w-6xl mx-auto text-center">
     
-                <h2 class="text-4xl font-semibold text-gray-900 mb-4">
+                <h2 class="text-4xl font-semibold text-gray-900 mb-4 scroll-animate delay-1">
                     Lokasi Kami
                 </h2>
 
-                <p class="text-gray-600 text-base mb-10 max-w-2xl leading-relaxed text-center mx-auto">
+                <p class="text-gray-600 text-base mb-10 max-w-2xl leading-relaxed text-center mx-auto scroll-animate delay-3">
                     Jl. Jend. Wito No.38, RT.2/RW.2, Brato, Kec. Boloktotono,
                     Kota Saranjana, Jawa Selatan 12150
                 </p>
 
                 <!-- MAP -->
-                <div class="w-full max-w-5xl h-[460px] mx-auto rounded-2xl overflow-hidden shadow-lg border">
+                <div class="w-full max-w-5xl h-[460px] mx-auto rounded-2xl overflow-hidden shadow-lg border border-gray-200 scroll-animate delay-4">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6013.879258367039!2d109.25366701884879!3d-7.435860572927334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1762736551342!5m2!1sid!2sid"
                         class="w-full h-full border-0"

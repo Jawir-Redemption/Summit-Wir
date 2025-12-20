@@ -1,0 +1,171 @@
+/* ===================================
+   Brand Marquee Component Styles
+   Animasi horizontal scroll untuk logo brand partner
+   =================================== */
+
+/* Section Wrapper */
+.brand-section {
+    background-color: #f5f5f5;
+    padding: 60px 0;
+    overflow: hidden; /* Sembunyikan overflow untuk animasi */
+}
+
+/* Container: Membatasi lebar maksimal konten */
+.brand-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header: Judul dan subtitle */
+.brand-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.brand-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.brand-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Marquee Container: Wrapper untuk animasi scroll */
+.brand-marquee {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Fade Effect: Gradasi kiri-kanan untuk efek smooth */
+.brand-marquee::before,
+.brand-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none; /* Tidak menghalangi interaksi */
+}
+
+.brand-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, #f5f5f5, transparent);
+}
+
+.brand-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, #f5f5f5, transparent);
+}
+
+/* Track: Element yang bergerak horizontal */
+.brand-track {
+    display: flex;
+    animation: scroll 30s linear infinite; /* Animasi 30 detik infinite */
+    width: fit-content;
+}
+
+/* Pause animasi saat hover */
+.brand-track:hover {
+    animation-play-state: paused;
+}
+
+/* Brand Item: Wrapper untuk setiap logo */
+.brand-item {
+    flex: 0 0 auto; /* Ukuran fixed, tidak grow/shrink */
+    margin: 0 15px;
+}
+
+/* Brand Card: Kotak putih individual untuk logo */
+.brand-card {
+    width: 200px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect: Card terangkat */
+.brand-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo Image: Default BERWARNA (dibalik dari sebelumnya) */
+.brand-card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(0%); /* Default: BERWARNA */
+    opacity: 1; /* Default: Full opacity */
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect: Logo jadi ABU-ABU (dibalik dari sebelumnya) */
+.brand-card:hover img {
+    filter: grayscale(100%); /* Hover: ABU-ABU */
+    opacity: 0.6; /* Hover: Agak transparant */
+}
+
+/* Keyframe Animation: Scroll horizontal */
+@keyframes scroll {
+    0% {
+        transform: translateX(0); /* Posisi awal */
+    }
+    100% {
+        transform: translateX(-50%); /* Geser 50% untuk seamless loop */
+    }
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .brand-title {
+        font-size: 2rem;
+    }
+
+    .brand-card {
+        width: 160px;
+        height: 100px;
+        padding: 20px;
+    }
+
+    .brand-item {
+        margin: 0 10px;
+    }
+
+    .brand-section {
+        padding: 40px 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .brand-title {
+        font-size: 1.5rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .brand-card {
+        width: 140px;
+        height: 90px;
+        padding: 15px;
+    }
+}
