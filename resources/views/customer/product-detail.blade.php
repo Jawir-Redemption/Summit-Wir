@@ -32,9 +32,8 @@
                     <h3 class="text-sm text-gray-500">Harga sewa</h3>
                     <p class="text-2xl font-bold text-blue-600 mb-4">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
 
-                    <form action="{{ route('cart.add', $product->id) }}" method="POST" class="space-y-4">
+                    <form action="{{ route('checkout.direct', $product->id) }}" method="POST" class="space-y-4">
                         @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                         <div>
                             <label class="block text-sm mb-1">Jumlah</label>
@@ -53,12 +52,17 @@
                         </div>
 
                         <div class="flex gap-3">
-                            <button type="submit"
-                                class=" px-4 py-2 border rounded-lg hover:bg-gray-50 ">
-                                Booking Sekarang
+                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                Checkout Sekarang
+                            </button>
+
+                            <button formaction="{{ route('cart.add', $product->id) }}"
+                                class="px-4 py-2 border rounded-lg hover:bg-gray-50">
+                                Masukkan ke Keranjang
                             </button>
                         </div>
                     </form>
+
                 </div>
 
                 {{-- Rekomendasi Produk --}}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -106,5 +107,41 @@ class CheckoutController extends Controller
         $order->save();
 
         return redirect()->route('home')->with('success', 'Pesanan berhasil dibatalkan.');
+    }
+
+    // direct checkout from product detail
+    public function directCheckout(Request $request, Product $product)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'qty' => 'required|integer|min:1',
+            'duration' => 'required|integer|min:1',
+        ]);
+
+        $qty = (int) $request->qty;
+        $duration = (int) $request->duration;
+
+        // Hitung total
+        $total = $product->price * $qty * $duration;
+
+        // Buat order
+        $order = Order::create([
+            'user_id' => $user->id,
+            'duration' => $duration,
+            'status' => 'pending',
+            'total_price' => $total,
+            'total_fine' => 0,
+        ]);
+
+        // Buat order detail
+        $order->orderDetails()->create([
+            'product_id' => $product->id,
+            'quantity' => $qty,
+            'price' => $product->price,
+        ]);
+
+        // Langsung ke halaman checkout review
+        return redirect()->route('checkout', ['order' => $order->id]);
     }
 }

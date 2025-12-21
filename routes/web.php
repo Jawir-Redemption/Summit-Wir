@@ -117,6 +117,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // ==================== CHECKOUT & PAYMENT ROUTES ====================
     Route::get('/checkout/{order}', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+    Route::post('/checkout/direct/{product}', [CheckoutController::class, 'directCheckout'])->name('checkout.direct');
     Route::delete('/checkout/cancel/{order}', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
     Route::post('/payment/pay/{order}', [PaymentController::class, 'pay'])->name('payment.pay');
     Route::get('/payment/status/{order}', [PaymentController::class, 'status'])->name('payment.status');
